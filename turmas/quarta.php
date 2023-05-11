@@ -1,11 +1,8 @@
-<?php
-require '../../banco.php';
 
-
-?>
 <html>
 <head>
 <link rel="stylesheet" href="quarta.css" type="text/css">
+ <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
@@ -90,11 +87,36 @@ $(document).ready(function () {
                       <th>Nome</th>
                       <th></th>
                     </tr>
-                    <tr>
-                      <td>Peter</td>
-                      <td>Griffin</td>
-                      <td>$100</td>
-                    </tr>
+     <?php
+                    $dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
+                    $user ='root';
+                    $password='';
+
+    try{
+        $dbh= new PDO($dsn, $user, $password);
+    }
+    catch(PDOException $e){
+        echo 'Connection failed'. $e->getMessage();
+    }
+         $sql='SELECT * FROM alunos 
+          where turma = 1';
+
+         foreach($dbh->query($sql)as $row) {
+                              
+         echo '<tr>';
+         echo '<td class="td1">'. $row['nome'] . '</td>';
+         echo '<td >';
+         echo '<a class="info" data-toggle="modal">
+          <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
+         </a>';
+         
+         echo '<a class="editpet" data-toggle="modal">
+         <i class="material-icons calendar_today" title="Editar Consulta">&#xe935;</i>
+          </a>';
+          echo '</td>';
+         }
+                            
+    ?>
                     
                   </table>
             </div>
