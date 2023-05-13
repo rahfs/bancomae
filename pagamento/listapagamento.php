@@ -80,60 +80,35 @@ $(document).ready(function () {
             </nav>
         </div><!--fim div nav-->
         
-            <div class="dashboard-nav2"><center>08:00</center>
-                <hr class ="hr1">
-                <table>
-                    <tr>
-                      <th>Nome</th>
-                      <th></th>
-                    </tr>
-     <?php
-                    $dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-                    $user ='root';
-                    $password='';
+            <div class="dashboard-nav2"><form action="updateusu.php" method="get">
+        
+        <div id="inputs">
+                <input type="text" name="nomepet" placeholder="Digite do mascote" >
+        </div>
+        
+        <div id="inputs">
+                <input type="text" name="idadepet" placeholder="Digite idade do mascote" >
+        </div>
+            
+        <div id="inputs">
+                <input type="text" name="pesopet" placeholder="Digite o peso do mascote" >
+        </div>
+        
+        <div id="inputs">
+                <input type="text" name="racapet" placeholder="Digite a raça do mascote" >             
+        </div>
+        <div id="inputs">
+             <textarea  name="obs" placeholder ="Digite uma Observação"></textarea>
+        </div>
+     
 
-    try{
-        $dbh= new PDO($dsn, $user, $password);
-    }
-    catch(PDOException $e){
-        echo 'Connection failed'. $e->getMessage();
-    }
-         $sql='SELECT * FROM alunos 
-          where turma = 1';
+        <div id="botao">
+        <button class="btn_logar" type="submit">Cadastrar</button>
+      <input type="button"class="btn_logar" value="Voltar" onclick="voltar()"> 
+        </div>
 
-         foreach($dbh->query($sql)as $row) {
-                              
-         echo '<tr>';
-         echo '<td class="td1">'. $row['nome'] . '</td>';
-         echo '<td >';
-         echo '<a class="info" data-toggle="modal">
-          <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
-         </a>';
-         
-         echo '<a class="editpet" data-toggle="modal">
-         <i class="material-icons calendar_today" title="Editar Consulta">&#xe935;</i>
-          </a>';
-          echo '</td>';
-         }
-                            
-    ?>
-                    
-                  </table>
-            </div>
-            <div class="dashboard-nav2"><center>10:00</center>
-                <hr class ="hr1">
-                <table>
-                    <tr>
-                      <th>Nome</th>
-                      <th></th>
-                    </tr>
-                    <tr>
-                      <td>Peter</td>
-                      <td>Griffin</td>
-                      <td>$100</td>
-                    </tr>
-                    
-                  </table>
+
+        </form>
             </div>
            
         

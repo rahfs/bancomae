@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\crud",
+    "\\pagamento",
+    "\\turmas"
   ],
   "PreviewInSolutionExplorer": false
 }
