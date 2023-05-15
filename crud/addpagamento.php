@@ -1,5 +1,9 @@
 <?php
-$dsn ='mysql:dbname=tabelapet;host=127.0.0.1';
+
+
+
+
+$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
 $user ='root';
 $password='';
 try{
@@ -9,20 +13,54 @@ catch(PDOException $e){
     echo 'Connection failed'. $e->getMessage();
 }
 
-session_start();
-$_SESSION['id'];
+$id_pagaluno = $_POST['id_pagaluno'];
+$id_mes = $_POST['id_mes'];
+$valor_pago = $_POST['valor_pago'];
+$forma_pag = $_POST['forma_pag'];
+$descricao = $_POST['descricao'];
 
 
-$nomepet = $_GET['nomepet'];
-$idadepet = $_GET['idadepet'];
-$pesopet = $_GET['pesopet'];
-$racapet = $_GET['racapet'];
-//$sexopet = $_POST['sexopet'];
-$id_usuario = $_SESSION['id'];
-$sql ="insert into pet(nomepet,idadepet,pesopet,racapet,id_usuario) values ('$nomepet','$idadepet','$pesopet','$racapet',$id_usuario)";
+$sql="INSERT INTO pagamento( id_pagaluno,id_mes, valor_pago,forma_pag,descricao) 
+VALUES ('.$id_pagaluno.','.$id_mes.','$valor_pago','.$forma_pag.','.$descricao.')";
 $count = $dbh->exec($sql);
-?>
+/*
 
-<script>
-    window.location ="../../pagina/menu/menuusu.php"
-</script>
+
+<div class="form-group">
+
+                       <label>Forma de pagamento </label>
+                            <select class="form-control" name="forma_pag">
+                                <option value=""></option>
+                                <?php
+                                $sqlforma="SELECT nome_forma from formadepagamento inner join pagamento on forma_pag = id_forma";            
+                                foreach($dbh->query($sqlforma) as $row){
+                                
+                                echo'
+                                <option value=" '.$forma_pag.' ">' .$row['nome_forma'].' </option>';
+                                 }?>
+                                
+                            </select>
+                        </div>
+
+                           <div class="form-group">
+                            <label>Mês </label>
+                            <select class="form-control" name="id_mes">
+                                <option value=""></option>
+                                <?php
+                                $sqlmes="SELECT * from mes inner join pagamento on pagamento.id_mes = mes.id_mes";            
+                                foreach($dbh->query($sqlmes) as $row){
+                                
+                                echo'
+                                <option value=" '.$id_mes.' ">' .$row['nome_mes'].' </option>';
+                                 }?>
+                                
+                            </select>
+                        </div> 
+                        $id_mes = $_POST['id_mes'];
+                        $forma_pag = $_POST['forma_pag'];
+                        
+                        
+                        */
+
+                        header("Location: ../pagamento/listapagamento.php");
+                        ?>

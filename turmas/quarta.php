@@ -7,137 +7,137 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        const mobileScreen = window.matchMedia("(max-width: 990px )");
+	<script>
+		const mobileScreen = window.matchMedia("(max-width: 990px )");
 $(document).ready(function () {
-    $(".dashboard-nav-dropdown-toggle").click(function () {
-        $(this).closest(".dashboard-nav-dropdown")
-            .toggleClass("show")
-            .find(".dashboard-nav-dropdown")
-            .removeClass("show");
-        $(this).parent()
-            .siblings()
-            .removeClass("show");
-    });
-    $(".menu-toggle").click(function () {
-        if (mobileScreen.matches) {
-            $(".dashboard-nav").toggleClass("mobile-show");
-        } else {
-            $(".dashboard").toggleClass("dashboard-compact");
-        }
-    });
+	$(".dashboard-nav-dropdown-toggle").click(function () {
+		$(this).closest(".dashboard-nav-dropdown")
+			.toggleClass("show")
+			.find(".dashboard-nav-dropdown")
+			.removeClass("show");
+		$(this).parent()
+			.siblings()
+			.removeClass("show");
+	});
+	$(".menu-toggle").click(function () {
+		if (mobileScreen.matches) {
+			$(".dashboard-nav").toggleClass("mobile-show");
+		} else {
+			$(".dashboard").toggleClass("dashboard-compact");
+		}
+	});
 });
-    </script>
+	</script>
 </head>
 <body  style="background-color:#b8b7b4;">
 <div class="d-flex flex-row">
-    <div class="dashboard">
-        <div class="dashboard-nav">
-            <header>
-                <a href="" class="brand-logo">
-                <i class="fa fa-cog fa-spin fa-3x fa-fw"></i> <span>Marta Freitas</span></a>
-            </header>
-            <nav class="dashboard-nav-list">
-                <div class="nav-item-divider"></div>
+	<div class="dashboard">
+		<div class="dashboard-nav">
+			<header>
+				<a href="" class="brand-logo">
+				<i class="fa fa-cog fa-spin fa-3x fa-fw"></i> <span>Marta Freitas</span></a>
+			</header>
+			<nav class="dashboard-nav-list">
+				<div class="nav-item-divider"></div>
 
-                    <a href="index.html" class="dashboard-nav-item active">
-                        <i class="fas fa-tachometer-alt"></i> Dashboard
-                    </a>
+					<a href="index.html" class="dashboard-nav-item active">
+						<i class="fas fa-tachometer-alt"></i> Dashboard
+					</a>
 
-                    <a href="#" class="dashboard-nav-item">
-                        <i class="fas fa-file-upload"></i> Upload
-                    </a>
-                <div class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
-                        <i class="fas fa-photo-video"></i> Turmas
-                    </a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="turmas/quarta.php" class="dashboard-nav-dropdown-item">Quarta</a>
-                        <a href="turmas/quinta.html" class="dashboard-nav-dropdown-item">Quinta</a>
-                        <a href="turmas/sexta.html" class="dashboard-nav-dropdown-item">Sexta</a>
-                        <a href="turmas/sabado.html" class="dashboard-nav-dropdown-item">Sabado</a>
-                    </div>
-                </div>
-                <div class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
-                        <i class="fas fa-users"></i> Alunos
-                    </a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="#" class="dashboard-nav-dropdown-item">All</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">New</a>
-                    </div>
-                </div>
-                <div class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
-                        <i class="fas fa-money-check-alt"></i> Payments
-                    </a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="pagamento/listapagamento.php" class="dashboard-nav-dropdown-item">All</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Recent</a>
-                        <a href="#" class="dashboard-nav-dropdown-item"> Projections</a>
-                    </div>
-                </div>
-            </nav>
-        </div><!--fim div nav-->
-        
-            <div class="dashboard-nav2"><center>08:00</center>
-                <hr class ="hr1">
-                <table>
-                    <tr>
-                      <th>Nome</th>
-                      <th></th>
-                    </tr>
-     <?php
-                    $dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-                    $user ='root';
-                    $password='';
+					<a href="#" class="dashboard-nav-item">
+						<i class="fas fa-file-upload"></i> Upload
+					</a>
+				<div class='dashboard-nav-dropdown'>
+					<a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+						<i class="fas fa-photo-video"></i> Turmas
+					</a>
+					<div class='dashboard-nav-dropdown-menu'>
+						<a href="turmas/quarta.php" class="dashboard-nav-dropdown-item">Quarta</a>
+						<a href="turmas/quinta.html" class="dashboard-nav-dropdown-item">Quinta</a>
+						<a href="turmas/sexta.html" class="dashboard-nav-dropdown-item">Sexta</a>
+						<a href="turmas/sabado.html" class="dashboard-nav-dropdown-item">Sabado</a>
+					</div>
+				</div>
+				<div class='dashboard-nav-dropdown'>
+					<a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+						<i class="fas fa-users"></i> Alunos
+					</a>
+					<div class='dashboard-nav-dropdown-menu'>
+						<a href="#" class="dashboard-nav-dropdown-item">All</a>
+						<a href="#" class="dashboard-nav-dropdown-item">New</a>
+					</div>
+				</div>
+				<div class='dashboard-nav-dropdown'>
+					<a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+						<i class="fas fa-money-check-alt"></i> Payments
+					</a>
+					<div class='dashboard-nav-dropdown-menu'>
+						<a href="../pagamento/listapagamento.php" class="dashboard-nav-dropdown-item">All</a>
+						<a href="#" class="dashboard-nav-dropdown-item">Recent</a>
+						<a href="#" class="dashboard-nav-dropdown-item"> Projections</a>
+					</div>
+				</div>
+			</nav>
+		</div><!--fim div nav-->
+		
+			<div class="dashboard-nav2"><center>08:00</center>
+				<hr class ="hr1">
+				<table>
+					<tr>
+					  <th>Nome</th>
+					  <th></th>
+					</tr>
+					<?php
+					$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
+					$user ='root';
+					$password='';
+					
+					try{
+					$dbh= new PDO($dsn, $user, $password);
+					}
+					catch(PDOException $e){
+					echo 'Connection failed'. $e->getMessage();
+					}
+					$sql='SELECT * FROM alunos 
+					where turma = 1';
 
-    try{
-        $dbh= new PDO($dsn, $user, $password);
-    }
-    catch(PDOException $e){
-        echo 'Connection failed'. $e->getMessage();
-    }
-         $sql='SELECT * FROM alunos 
-          where turma = 1';
-
-         foreach($dbh->query($sql)as $row) {
-                              
-         echo '<tr>';
-         echo '<td class="td1">'. $row['nome'] . '</td>';
-         echo '<td >';
-         echo '<a class="info" data-toggle="modal">
-          <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
-         </a>';
-         
-         echo '<a class="editpet" data-toggle="modal">
-         <i class="material-icons calendar_today" title="Editar Consulta">&#xe935;</i>
-          </a>';
-          echo '</td>';
-         }
-                            
-    ?>
-                    
-                  </table>
-            </div>
-            <div class="dashboard-nav2"><center>10:00</center>
-                <hr class ="hr1">
-                <table>
-                    <tr>
-                      <th>Nome</th>
-                      <th></th>
-                    </tr>
-                    <tr>
-                      <td>Peter</td>
-                      <td>Griffin</td>
-                      <td>$100</td>
-                    </tr>
-                    
-                  </table>
-            </div>
-           
-        
-    </div>
+					foreach($dbh->query($sql)as $row) {
+							  
+					 echo '<tr>';
+					 echo '<td class="td1">'. $row['nome'] . '</td>';
+					 echo '<td >';
+					 echo '<a class="info" data-toggle="modal">
+					  <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
+					 </a>';
+		 
+					 echo '<a class="editpet" data-toggle="modal">
+					 <i class="material-icons calendar_today" title="Editar Consulta">&#xe935;</i>
+					  </a>';
+					  echo '</td>';
+					 }
+							
+					?>
+					
+				  </table>
+			</div>
+			<div class="dashboard-nav2"><center>10:00</center>
+				<hr class ="hr1">
+				<table>
+					<tr>
+					  <th>Nome</th>
+					  <th></th>
+					</tr>
+					<tr>
+					  <td>Peter</td>
+					  <td>Griffin</td>
+					  <td>$100</td>
+					</tr>
+					
+				  </table>
+			</div>
+		   
+		
+	</div>
 </div>
 
 

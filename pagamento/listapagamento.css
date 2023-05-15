@@ -378,17 +378,16 @@ h1, .h1 {
 }
 
 .dashboard-nav2 {
-    min-width: 280px;
+    min-width: 800px;
     max-height:650px;
     padding-left: 10px;
-    
     position: relative;
     left: 190;
     top: 45;
     bottom: 45;
     overflow: auto;
     background-color:white;
-    border-radius:158px;
+    border-radius:18px;
     border-style:groove;
 }
 .dashboard-nav2 center {
@@ -408,3 +407,21 @@ h1, .h1 {
         background-image: linear-gradient(to right, transparent, #CCC, transparent);  
       }
 
+table {
+padding-left:15px;
+width: 900px;
+
+}
+
+tr {
+
+border-bottom: 1px black solid;
+}
+.icon {
+width:20;
+text-align:justify;
+}
+
+.divhead{
+    padding-right:100px;
+}
