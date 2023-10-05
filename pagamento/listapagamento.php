@@ -124,136 +124,138 @@ $(document).ready(function () {
                 
                     
             </div>
-				<hr class ="hr1">
-				<table>
-					<tr>
-                        <th>ID</th>
-					    <th >Nome</th>
-                        <th>Mês</th>
-                        <th>Valor Mensal</th>
-                        <th>Forma de Pagamento</th>
-					    <th>Opções</th>
-                    </tr>
+			<hr class ="hr1">
+			<table>
+				<tr>
+                    <th>ID</th>
+					<th >Nome</th>
+                    <th>Mês</th>
+                    <th>Valor Mensal</th>
+		    <th style="padding-left:20px;">Data de Pagamento</th>
+                    <th style="padding-left:20px;">Forma de Pagamento</th>
+					<th>Opções</th>
+                </tr>
 
-					<?php
-					$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-					$user ='root';
-					$password='';
+				<?php
+				$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
+				$user ='root';
+				$password='';
 					
-					try{
-					$dbh= new PDO($dsn, $user, $password);
-					}
-					catch(PDOException $e){
-					echo 'Connection failed'. $e->getMessage();
-					}
-					$sql='SELECT * FROM alunos 
-                    inner join pagamento on id_pagaluno = id_aluno 
-                    inner join mes on mes.id_mes = pagamento.id_mes 
-                    inner join formadepagamento on id_forma = forma_pag order by id_pagamento  desc';
+				try{
+				$dbh= new PDO($dsn, $user, $password);
+				}
+				catch(PDOException $e){
+				echo 'Connection failed'. $e->getMessage();
+				}
+				$sql='SELECT * FROM alunos 
+                inner join pagamento on id_pagaluno = id_aluno 
+                inner join mes on mes.id_mes = pagamento.id_mes 
+                inner join formadepagamento on id_forma = forma_pag order by id_pagamento  desc';
 
-					foreach($dbh->query($sql)as $row) {
+				foreach($dbh->query($sql)as $row) {
 							  
-					 echo '<tr>';
-                     echo '<td>'. $row['id_pagamento'] . '</td>';
-                     echo '<td>'. $row['nome'] . '</td>';
-                     echo '<td >'. $row['nome_mes'] . '</td>';
-					 echo '<td class="icon" >'. $row['valor_pago'] . '</td>';
-					 echo '<td>'. $row['nome_forma'] .'</td>';
-                     echo '<td>';
-					 echo '<a class="info" data-toggle="modal">
-					  <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
-					 </a>';
-					 echo '<a class="editpet" data-toggle="modal">
-					 <i class="material-icons calendar_today" title="Editar Consulta">&#xe935;</i>
-					  </a>';
-					  echo '</td>';
+					echo '<tr>';
+                    echo '<td scope="row">'. $row['id_pagamento'] . '</td>';
+                    echo '<td>'. $row['nome'] . '</td>';
+                    echo '<td >'. $row['nome_mes'] . '</td>';
+					echo '<td class="icon" style="padding-left:15px;">'. $row['valor_pago'] . '</td>';
+echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
+					echo '<td style="padding-left:20px;">'. $row['nome_forma'] .'</td>';
+                    
+                    echo'<td>
+					<a href="infopagamento.php?id='.$row['id_pagamento'].'" style="color:#4286F0" >
+                        <i class="material-icons" data-toggle="tooltip" title="Detalhes Pagamento">&#xe853;</i>
+                    </a>
+					<a href="editapagamento.php?id_pagamento='.$row['id_pagamento'].'" >
+					    <i class="material-icons calendar_today" style="color:#68DF82;" title="Editar Consulta">&#xE254;</i>
+					</a>
+					</td>';
                       
-					 }
-							
-					?>
+					}
+						?>	
 					
-				  </table>
+					
+				</table>
 			</div>
 			
-            
-        <!-- Adicionar pagamento HTML -->
-        <div id="addEmployeeModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form action="../crud/addpagamento.php" method="POST">
-                    <div class="modal-header"> 
-                        <h4 class="modal-title">Cadastrar pagamento</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body"> 
+            <!-- Adicionar pagamento HTML -->
+            <div id="addEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="../crud/addpagamento.php" method="POST">
+                            <div class="modal-header"> 
+                                <h4 class="modal-title">Cadastrar pagamento</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body"> 
 
-                        <div class="form-group">
-                            <label>Nome </label>
-                            <select class="form-control" id="id_pagaluno" name="id_pagaluno">
-                                <option value=""></option>
-                                <?php
-                                $sqlaluno="SELECT * from alunos inner join pagamento on id_pagamento = alunopag order by nome asc";            
-                                foreach($dbh->query($sqlaluno) as $row){
+                                <div class="form-group">
+                                    <label>Nome </label>
+                                    <select class="form-control" id="id_pagaluno" name="id_pagaluno">
+                                        <option value=""></option>
+                                        <?php
+                                        $sqlaluno="SELECT * from alunos 
+                                        order by nome asc";            
+                                        foreach($dbh->query($sqlaluno) as $row){
                                 
-                                $id_pagaluno=$row['id_pagaluno'];
-                                echo'
-                                <option value= '.$row['id_pagaluno'].' >' .$row['nome'].' </option>';
-                                 }?>
+                                        $id_pagaluno=$row['id_aluno'];
+                                        echo'
+                                        <option value= '.$row['id_aluno'].' >' .$row['nome'].' </option>';
+                                         }?>
                                 
-                            </select>
-                        </div>
+                                    </select>
+                                </div>
 
-                        <div class="form-group">
-                            <label>Mês </label>
-                            <select class="form-control" id="id_mes" name="id_mes">
-                                <option value=""></option>
-                                <?php
-                                $sqlmes="SELECT * from mes inner join pagamento on pagamento.id_mes= mes.id_mes";            
-                                foreach($dbh->query($sqlmes) as $row){
-                                
-                                $id_mes=$row['pagamento.id_mes'];
-                                echo'
-                                <option value= '.$row['pagamento.id_mes'].' >' .$row['nome_mes'].' </option>';
-                                 }?>
-                                
-                            </select>
-                        </div> 
+                                <div class="form-group">
+                                    <label>Mês </label>
+                                    <select class="form-control" id="id_mes" name="id_mes">
+                                        <!--<option value="1">Janeiro</option>-->
+                                        <option value="2">Fevereiro</option>
+                                        <option value="3">Março</option>
+                                        <option value="4">Abril</option>
+                                        <option value="5">Maio</option>
+                                        <option value="6">Junho</option>
+                                        <option value="7">Julho</option>
+                                        <option value="8">Agosto</option>
+                                        <option value="9">Setembro</option>
+                                        <option value="10">Outubro</option>
+                                        <option value="11">Novembro</option>
+                                        <option value="12">Dezembro</option>
+                                    </select>
+                                </div> 
 
-                        <div class="form-group">
-                       <label>Forma de pagamento </label>
-                            <select class="form-control" id="forma_pag" name="forma_pag">
-                                <option value=""></option>
-                                <?php
-                                $sqlforma="SELECT * from formadepagamento inner join pagamento on id_forma = forma_pag 
-";            
-                                foreach($dbh->query($sqlforma) as $row){
-                                
-                                $forma_pag=$row['forma_pag'];
-                                echo'
-                                <option value= '.$row['forma_pag'].' >' .$row['nome_forma'].' </option>';
-                                 }?>
-                                
-                            </select>
-                        </div>
+                                <div class="form-group">
+                               <label>Forma de pagamento </label>
+                                    <select class="form-control" id="forma_pag" name="forma_pag">
+                                        <option value="1">Dinheiro</option>
+                                        <option value="2">Cartão</option>
+                                        <option value="3">Pix</option>
+                                    </select>
+                                </div>
 
-                        <div class="form-group">
-                            <label>Valor pagamento </label>
-                            <input type="text" class="form-control" name="valor_pago" placeholder="Digite o valor do pagamento" >
-                        </div>
+                                <div class="form-group">
+                                    <label>Valor pagamento </label>
+                                    <input type="text" class="form-control" name="valor_pago" placeholder="Digite o valor do pagamento" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Data do pagamento </label>
+                                    <input type="text" class="form-control" name="data_pag" placeholder="Informe a data do pagamento" >
+                                </div>
                         
-                        <div class="form-group " >
-                            <label>Descrição </label>
-                            <textarea class="form-control" name="descricao" placeholder ="Digite uma descrição"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-default"><a href="../../pagina/consulta/agenda.php">Cancelar</a></button>
-                        <input type="submit" class="btn btn-info" value="Save">
-                    </div>
-                </form>
-                </div>
-                </div>
-            </div>
+                                <div class="form-group " >
+                                    <label>Descrição </label>
+                                    <textarea class="form-control" name="descricao" placeholder ="Digite uma descrição"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default"><a href="../../pagina/consulta/agenda.php">Cancelar</a></button>
+                                <input type="submit" class="btn btn-info" value="Save">
+                            </div>
+                        </form>
+                    </div><!-- modal content -->
+                </div><!-- modal dialog -->
+            </div><!-- fim cadastro -->
      </div>
  </div>
           
