@@ -240,7 +240,7 @@ echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
 
                                 <div class="form-group">
                                     <label>Data do pagamento </label>
-                                    <input type="text" class="form-control" name="data_pag" placeholder="Informe a data do pagamento" >
+                                    <input type="date" class="form-control" name="data_pag">
                                 </div>
                         
                                 <div class="form-group " >

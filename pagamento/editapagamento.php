@@ -116,9 +116,9 @@ echo'<div id="addEmployeeModal" >
                             <label>Valor pagamento </label>
                             <input type="text" class="form-control" name="valor_pago"  value="'.$row['valor_pago'].'">
                         </div>
-			<div class="form-group">
+			            <div class="form-group">
                             <label>Data do pagamento </label>
-                            <input type="text" class="form-control" name="data_pag"  value="'.$row['data_pag'].'">
+                            <input type="date" class="form-control" name="data_pag"  value="'.$row['data_pag'].'">
                         </div>
                         
                         <div class="form-group " >

@@ -15,8 +15,7 @@ $valor_pago = $_POST['valor_pago'];
 $forma_pag = $_POST['forma_pag'];
 $data_pag = $_POST['data_pag'];
 $descricao = $_POST['descricao'];
-$data = date_create_from_format('dd-mm-YYYY', $data_pag);
-$data=$data_pag;
+
 
 $sql="INSERT INTO pagamento
 ( id_pagaluno,id_mes, valor_pago,forma_pag,data_pag,descricao) 
@@ -25,7 +24,7 @@ VALUES (
 '.$id_mes.',
 '$valor_pago',
 '.$forma_pag.',
-'.$data_pag.',
+'$data_pag',
 '.$descricao.'
 )";
 $count = $dbh->exec($sql);

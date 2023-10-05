@@ -127,11 +127,36 @@ $(document).ready(function () {
 					  <th>Nome</th>
 					  <th></th>
 					</tr>
-					<tr>
-					  <td>Peter</td>
-					  <td>Griffin</td>
-					  <td>$100</td>
-					</tr>
+					<?php
+					$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
+					$user ='root';
+					$password='';
+					
+					try{
+					$dbh= new PDO($dsn, $user, $password);
+					}
+					catch(PDOException $e){
+					echo 'Connection failed'. $e->getMessage();
+					}
+					$sql='SELECT * FROM alunos 
+					where turma = 2';
+
+					foreach($dbh->query($sql)as $row) {
+							  
+					 echo '<tr>';
+					 echo '<td class="td1">'. $row['nome'] . '</td>';
+					 echo '<td >';
+					 echo '<a class="info" data-toggle="modal">
+					  <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
+					 </a>';
+		 
+					 echo '<a class="editpet" data-toggle="modal">
+					 <i class="material-icons calendar_today" title="Editar Consulta">&#xe935;</i>
+					  </a>';
+					  echo '</td>';
+					 }
+							
+					?>
 					
 				  </table>
 			</div>
