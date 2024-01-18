@@ -256,6 +256,60 @@ echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
                     </div><!-- modal content -->
                 </div><!-- modal dialog -->
             </div><!-- fim cadastro -->
+
+             <!-- Adicionar pagamento HTML -->
+            <div id="addaluno" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="../crud/addaluno.php" method="POST">
+                            <div class="modal-header"> 
+                                <h4 class="modal-title">Cadastrar pagamento</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body"> 
+
+                                <div class="form-group">
+                                    <label>Nome </label>
+                                    <input type="text" class="form-control" name="nome_aluno" placeholder="Digite o Nome Completo" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Endereço </label>
+                                    <input type="text" class="form-control" name="endereco_aluno" placeholder="Digite o endereço">
+                                </div> 
+
+                                <div class="form-group">
+                               <label>Turma </label>
+                                    <input type="text" class="form-control" name="turma_aluno" >
+                                </div>
+
+                                <div class="form-group">
+                                <label> Data de Entrada </label>
+                                   <input type="date" class="form-control" name="data_entrada" > 
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Data do pagamento </label>
+                                    <input type="date" class="form-control" name="data_pag">
+                                </div>
+                        
+                                <div class="form-group " >
+                                    <label>Telefone 1 </label>
+                                    <input type="text" class="form-control" name="tel_aluno1" placeholder="Digite o telefone" >
+                                </div>
+                                <div class="form-group " >
+                                    <label>Telefone 2 </label>
+                                    <input type="text" class="form-control" name="tel_aluno2" placeholder="Digite o telefone" >
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default"><a href="../../pagina/consulta/agenda.php">Cancelar</a></button>
+                                <input type="submit" class="btn btn-info" value="Save">
+                            </div>
+                        </form>
+                    </div><!-- modal content -->
+                </div><!-- modal dialog -->
+            </div><!-- fim cadastro -->
      </div>
  </div>
           
@@ -266,4 +320,5 @@ echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
 </html>
