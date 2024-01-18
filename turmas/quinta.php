@@ -69,7 +69,6 @@ $(document).ready(function () {
       });
 </script>
 
-
 <div class="d-flex flex-row">
     <div class="dashboard">
         <div class="dashboard-nav">
@@ -139,7 +138,7 @@ $(document).ready(function () {
 					echo 'Connection failed'. $e->getMessage();
 					}
 					$sql='SELECT * FROM alunos 
-					where turma = 1';
+					where turma = 3';
 
 					foreach($dbh->query($sql)as $row) {
 							  
@@ -179,7 +178,48 @@ $(document).ready(function () {
 					echo 'Connection failed'. $e->getMessage();
 					}
 					$sql='SELECT * FROM alunos 
-					where turma = 2';
+					where turma = 4';
+
+					foreach($dbh->query($sql)as $row) {
+							  
+					 echo '<tr>';
+					 echo '<td class="td1">'. $row['nome'] . '</td>';
+					 echo '<td >';
+					 echo '<a class="info" data-toggle="modal">
+					  <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
+					 </a>';
+		 
+					 echo '<a class="editpet" data-toggle="modal">
+					 <i class="material-icons calendar_today" title="Editar Consulta">&#xe935;</i>
+					  </a>';
+					  echo '</td>';
+					 }
+							
+					?>
+					
+				  </table>
+			</div>
+
+            <div class="dashboard-nav2"><center>14:00</center>
+				<hr class ="hr1">
+				<table>
+					<tr>
+					  <th>Nome</th>
+					  <th></th>
+					</tr>
+					<?php
+					$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
+					$user ='root';
+					$password='';
+					
+					try{
+					$dbh= new PDO($dsn, $user, $password);
+					}
+					catch(PDOException $e){
+					echo 'Connection failed'. $e->getMessage();
+					}
+					$sql='SELECT * FROM alunos 
+					where turma = 5';
 
 					foreach($dbh->query($sql)as $row) {
 							  

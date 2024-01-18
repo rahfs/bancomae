@@ -69,6 +69,7 @@ $(document).ready(function () {
       });
 </script>
 
+
 <div class="d-flex flex-row">
     <div class="dashboard">
         <div class="dashboard-nav">
@@ -92,9 +93,9 @@ $(document).ready(function () {
                 </a>
                 <div class='dashboard-nav-dropdown-menu'>
                     <a href="../turmas/quarta.php" class="dashboard-nav-dropdown-item">Quarta</a>
-                    <a href="../turmas/quinta.html" class="dashboard-nav-dropdown-item">Quinta</a>
-                    <a href="../turmas/sexta.html" class="dashboard-nav-dropdown-item">Sexta</a>
-                    <a href="../turmas/sabado.html" class="dashboard-nav-dropdown-item">Sabado</a>
+                    <a href="../turmas/quinta.php" class="dashboard-nav-dropdown-item">Quinta</a>
+                    <a href="../turmas/sexta.php" class="dashboard-nav-dropdown-item">Sexta</a>
+                    <a href="../turmas/sabado.php" class="dashboard-nav-dropdown-item">Sabado</a>
                  </div>
             </div>
             <div class='dashboard-nav-dropdown'>
@@ -102,18 +103,18 @@ $(document).ready(function () {
                     <i class="fas fa-users"></i> Alunos
                 </a>
                 <div class='dashboard-nav-dropdown-menu'>
-                    <a href="#" class="dashboard-nav-dropdown-item">All</a>
-                    <a href="#" class="dashboard-nav-dropdown-item">New</a>
+                    <a href="#" class="dashboard-nav-dropdown-item">Todos Alunos</a>
+                    <a href="#" class="dashboard-nav-dropdown-item">Cadastrar Alunos</a>
                 </div>
              </div>
              <div class='dashboard-nav-dropdown'>
                  <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle active">
-                     <i class="fas fa-money-check-alt"></i> Payments
+                     <i class="fas fa-money-check-alt"></i> Pagamento
                  </a>
                  <div class='dashboard-nav-dropdown-menu'>
-                     <a href="../pagamento/listapagamento.php" class="dashboard-nav-dropdown-item ">All</a>
+                     <a href="../pagamento/listapagamento.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
                      <a href="#addEmployeeModal" class="dashboard-nav-dropdown-item" data-toggle="modal">Adicionar Pagamento</a>
-                     <a href="#" class="dashboard-nav-dropdown-item"> Projections</a>
+                     
                  </div>
              </div>
              </nav>

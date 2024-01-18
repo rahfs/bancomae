@@ -120,7 +120,7 @@ $(document).ready(function () {
              </nav>
         </div><!--fim div nav-->
 		
-			<div class="dashboard-nav2"><center>08:00</center>
+			<div class="dashboard-nav2"><center>09:00</center>
 				<hr class ="hr1">
 				<table>
 					<tr>
@@ -139,7 +139,7 @@ $(document).ready(function () {
 					echo 'Connection failed'. $e->getMessage();
 					}
 					$sql='SELECT * FROM alunos 
-					where turma = 1';
+					where turma = 6';
 
 					foreach($dbh->query($sql)as $row) {
 							  
@@ -160,46 +160,7 @@ $(document).ready(function () {
 					
 				  </table>
 			</div>
-			<div class="dashboard-nav2"><center>10:00</center>
-				<hr class ="hr1">
-				<table>
-					<tr>
-					  <th>Nome</th>
-					  <th></th>
-					</tr>
-					<?php
-					$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-					$user ='root';
-					$password='';
-					
-					try{
-					$dbh= new PDO($dsn, $user, $password);
-					}
-					catch(PDOException $e){
-					echo 'Connection failed'. $e->getMessage();
-					}
-					$sql='SELECT * FROM alunos 
-					where turma = 2';
-
-					foreach($dbh->query($sql)as $row) {
-							  
-					 echo '<tr>';
-					 echo '<td class="td1">'. $row['nome'] . '</td>';
-					 echo '<td >';
-					 echo '<a class="info" data-toggle="modal">
-					  <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
-					 </a>';
-		 
-					 echo '<a class="editpet" data-toggle="modal">
-					 <i class="material-icons calendar_today" title="Editar Consulta">&#xe935;</i>
-					  </a>';
-					  echo '</td>';
-					 }
-							
-					?>
-					
-				  </table>
-			</div>
+			
 		   
 		
 	</div>
