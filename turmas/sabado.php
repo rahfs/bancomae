@@ -133,7 +133,7 @@ $(document).ready(function () {
 					echo 'Connection failed'. $e->getMessage();
 					}
 					$sql='SELECT * FROM alunos 
-					where turma = 7';
+					where turma = 5';
 
 					foreach($dbh->query($sql)as $row) {
 							  
@@ -173,7 +173,7 @@ $(document).ready(function () {
 					echo 'Connection failed'. $e->getMessage();
 					}
 					$sql='SELECT * FROM alunos 
-					where turma = 8';
+					where turma = 6';
 
 					foreach($dbh->query($sql)as $row) {
 							  
@@ -214,7 +214,7 @@ $(document).ready(function () {
 					echo 'Connection failed'. $e->getMessage();
 					}
 					$sql='SELECT * FROM alunos 
-					where turma = 9';
+					where turma = 7';
 
 					foreach($dbh->query($sql)as $row) {
 							  

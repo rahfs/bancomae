@@ -133,7 +133,7 @@ $(document).ready(function () {
 					echo 'Connection failed'. $e->getMessage();
 					}
 					$sql='SELECT * FROM alunos 
-					where turma = 6';
+					where turma = 4';
 
 					foreach($dbh->query($sql)as $row) {
 							  
