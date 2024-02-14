@@ -147,7 +147,7 @@ $(document).ready(function () {
 				$sql='SELECT * FROM alunos 
                 inner join pagamento on id_pagaluno = id_aluno 
                 inner join mes on mes.id_mes = pagamento.id_mes 
-                inner join formadepagamento on id_forma = forma_pag order by id_pagamento  desc';
+                inner join formadepagamento on id_forma = forma_pag order by id_aluno';
 
 				foreach($dbh->query($sql)as $row) {
 							  
@@ -156,8 +156,8 @@ $(document).ready(function () {
                     echo '<td>'. $row['nome']                 .'</td>';
                     echo '<td>'. $row['endereco']             .'</td>';
 					echo '<td>'. $row['telefone']             .'</td>';
-                    echo '<td>'. $row['nome_turma']           .'</td>';
-                    echo '<td>'. $row['horario_turma']           .'</td>';
+                    echo '<td>'. $row['dia']           .'</td>';
+                    echo '<td>'. $row['horario']           .'</td>';
 					
                     echo'<td> 
                     <a href="infoaluno.php?id='.$row['id_aluno'].'" style="color:#4286F0" > <i class="material-icons" data-toggle="tooltip" title="Detalhes Pagamento">&#xe853;</i> </a>
