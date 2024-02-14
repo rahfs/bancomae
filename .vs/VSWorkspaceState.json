@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\crud",
-    "\\pagamento",
+    "\\css",
+    "\\paginas",
     "\\turmas"
   ],
+  "SelectedNode": "\\turmas\\sexta.php",
   "PreviewInSolutionExplorer": false
 }

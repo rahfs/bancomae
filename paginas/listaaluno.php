@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="listapagamento.css" type="text/css">
+<link rel="stylesheet" href="../css/listapagamento.css" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
@@ -83,10 +83,6 @@ $(document).ready(function () {
                 <a href="../index.html" class="dashboard-nav-item active">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
-
-                <a href="#" class="dashboard-nav-item">
-                    <i class="fas fa-file-upload"></i> Upload
-                </a>
             <div class='dashboard-nav-dropdown'>
                 <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
                     <i class="fas fa-photo-video"></i> Turmas
@@ -103,8 +99,8 @@ $(document).ready(function () {
                     <i class="fas fa-users"></i> Alunos
                 </a>
                 <div class='dashboard-nav-dropdown-menu'>
-                    <a href="#" class="dashboard-nav-dropdown-item">Todos Alunos</a>
-                    <a href="#" class="dashboard-nav-dropdown-item">Cadastrar Alunos</a>
+                    <a href="../paginas/listaaluno.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
+                    <a href="../paginas/listaaluno.php#addaluno" class="dashboard-nav-dropdown-item">Cadastrar Alunos</a>
                 </div>
              </div>
              <div class='dashboard-nav-dropdown'>
@@ -112,8 +108,8 @@ $(document).ready(function () {
                      <i class="fas fa-money-check-alt"></i> Pagamento
                  </a>
                  <div class='dashboard-nav-dropdown-menu'>
-                     <a href="../pagamento/listapagamento.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
-                     <a href="#addEmployeeModal" class="dashboard-nav-dropdown-item" data-toggle="modal">Adicionar Pagamento</a>
+                     <a href="../paginas/listapagamento.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
+                     <a href="../paginas/listapagamento.php#addEmployeeModal" class="dashboard-nav-dropdown-item" data-toggle="modal">Adicionar Pagamento</a>
                      
                  </div>
              </div>
@@ -156,109 +152,26 @@ $(document).ready(function () {
 				foreach($dbh->query($sql)as $row) {
 							  
 					echo '<tr>';
-                    echo '<td scope="row">'. $row['id_pagamento'] . '</td>';
-                    echo '<td>'. $row['nome'] . '</td>';
-                    echo '<td >'. $row['nome_mes'] . '</td>';
-					echo '<td class="icon" style="padding-left:15px;">'. $row['valor_pago'] . '</td>';
-echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
-					echo '<td style="padding-left:20px;">'. $row['nome_forma'] .'</td>';
-                    
-                    echo'<td>
-					<a href="infopagamento.php?id='.$row['id_pagamento'].'" style="color:#4286F0" >
-                        <i class="material-icons" data-toggle="tooltip" title="Detalhes Pagamento">&#xe853;</i>
-                    </a>
-					<a href="editapagamento.php?id_pagamento='.$row['id_pagamento'].'" >
-					    <i class="material-icons calendar_today" style="color:#68DF82;" title="Editar Consulta">&#xE254;</i>
-					</a>
+                    echo '<td>'. $row['id_aluno']             .'</td>';
+                    echo '<td>'. $row['nome']                 .'</td>';
+                    echo '<td>'. $row['endereco']             .'</td>';
+					echo '<td>'. $row['telefone']             .'</td>';
+                    echo '<td>'. $row['nome_turma']           .'</td>';
+                    echo '<td>'. $row['horario_turma']           .'</td>';
+					
+                    echo'<td> 
+                    <a href="infoaluno.php?id='.$row['id_aluno'].'" style="color:#4286F0" > <i class="material-icons" data-toggle="tooltip" title="Detalhes Pagamento">&#xe853;</i> </a>
+					<a href="editaaluno.php?id_aluno='.$row['id_aluno'].'" > <i class="material-icons calendar_today" style="color:#68DF82;" title="Editar Consulta">&#xE254;</i> </a>
 					</td>';
                       
 					}
-						?>	
+				?>	
 					
 					
 				</table>
 			</div>
-			
-            <!-- Adicionar pagamento HTML -->
-            <div id="addEmployeeModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form action="../crud/addpagamento.php" method="POST">
-                            <div class="modal-header"> 
-                                <h4 class="modal-title">Cadastrar pagamento</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            </div>
-                            <div class="modal-body"> 
 
-                                <div class="form-group">
-                                    <label>Nome </label>
-                                    <select class="form-control" id="id_pagaluno" name="id_pagaluno">
-                                        <option value=""></option>
-                                        <?php
-                                        $sqlaluno="SELECT * from alunos 
-                                        order by nome asc";            
-                                        foreach($dbh->query($sqlaluno) as $row){
-                                
-                                        $id_pagaluno=$row['id_aluno'];
-                                        echo'
-                                        <option value= '.$row['id_aluno'].' >' .$row['nome'].' </option>';
-                                         }?>
-                                
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Mês </label>
-                                    <select class="form-control" id="id_mes" name="id_mes">
-                                        <!--<option value="1">Janeiro</option>-->
-                                        <option value="2">Fevereiro</option>
-                                        <option value="3">Março</option>
-                                        <option value="4">Abril</option>
-                                        <option value="5">Maio</option>
-                                        <option value="6">Junho</option>
-                                        <option value="7">Julho</option>
-                                        <option value="8">Agosto</option>
-                                        <option value="9">Setembro</option>
-                                        <option value="10">Outubro</option>
-                                        <option value="11">Novembro</option>
-                                        <option value="12">Dezembro</option>
-                                    </select>
-                                </div> 
-
-                                <div class="form-group">
-                               <label>Forma de pagamento </label>
-                                    <select class="form-control" id="forma_pag" name="forma_pag">
-                                        <option value="1">Dinheiro</option>
-                                        <option value="2">Cartão</option>
-                                        <option value="3">Pix</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Valor pagamento </label>
-                                    <input type="text" class="form-control" name="valor_pago" placeholder="Digite o valor do pagamento" >
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Data do pagamento </label>
-                                    <input type="date" class="form-control" name="data_pag">
-                                </div>
-                        
-                                <div class="form-group " >
-                                    <label>Descrição </label>
-                                    <textarea class="form-control" name="descricao" placeholder ="Digite uma descrição"></textarea>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-default"><a href="../../pagina/consulta/agenda.php">Cancelar</a></button>
-                                <input type="submit" class="btn btn-info" value="Save">
-                            </div>
-                        </form>
-                    </div><!-- modal content -->
-                </div><!-- modal dialog -->
-            </div><!-- fim cadastro -->
-
-             <!-- Adicionar pagamento HTML -->
+             <!-- Adicionar aluno HTML -->
             <div id="addaluno" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
