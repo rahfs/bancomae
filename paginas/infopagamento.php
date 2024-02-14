@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="listapagamento.css" type="text/css">
+<link rel="stylesheet" href="../css/listapagamento.css" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">

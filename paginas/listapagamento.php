@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="listapagamento.css" type="text/css">
+<link rel="stylesheet" href="../css/listapagamento.css" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
@@ -83,10 +83,6 @@ $(document).ready(function () {
                 <a href="../index.html" class="dashboard-nav-item active">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
-
-                <a href="#" class="dashboard-nav-item">
-                    <i class="fas fa-file-upload"></i> Upload
-                </a>
             <div class='dashboard-nav-dropdown'>
                 <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
                     <i class="fas fa-photo-video"></i> Turmas
@@ -103,17 +99,16 @@ $(document).ready(function () {
                     <i class="fas fa-users"></i> Alunos
                 </a>
                 <div class='dashboard-nav-dropdown-menu'>
-                    <a href="#" class="dashboard-nav-dropdown-item">Todos Alunos</a>
-                    <a href="#" class="dashboard-nav-dropdown-item">Cadastrar Alunos</a>
-                </div>
+                    <a href="../paginas/listaaluno.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
+                     </div>
              </div>
              <div class='dashboard-nav-dropdown'>
                  <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle active">
                      <i class="fas fa-money-check-alt"></i> Pagamento
                  </a>
                  <div class='dashboard-nav-dropdown-menu'>
-                     <a href="../pagamento/listapagamento.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
-                     <a href="#addEmployeeModal" class="dashboard-nav-dropdown-item" data-toggle="modal">Adicionar Pagamento</a>
+                     <a href="../paginas/listapagamento.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
+                     <a href="#addpagamento" class="dashboard-nav-dropdown-item" data-toggle="modal">Adicionar Pagamento</a>
                      
                  </div>
              </div>
@@ -180,7 +175,7 @@ echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
 			</div>
 			
             <!-- Adicionar pagamento HTML -->
-            <div id="addEmployeeModal" class="modal fade">
+            <div id="addpagamento" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <form action="../crud/addpagamento.php" method="POST">
@@ -257,60 +252,7 @@ echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
                     </div><!-- modal content -->
                 </div><!-- modal dialog -->
             </div><!-- fim cadastro -->
-
-             <!-- Adicionar pagamento HTML -->
-            <div id="addaluno" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form action="../crud/addaluno.php" method="POST">
-                            <div class="modal-header"> 
-                                <h4 class="modal-title">Cadastrar pagamento</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            </div>
-                            <div class="modal-body"> 
-
-                                <div class="form-group">
-                                    <label>Nome </label>
-                                    <input type="text" class="form-control" name="nome_aluno" placeholder="Digite o Nome Completo" >
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Endereço </label>
-                                    <input type="text" class="form-control" name="endereco_aluno" placeholder="Digite o endereço">
-                                </div> 
-
-                                <div class="form-group">
-                               <label>Turma </label>
-                                    <input type="text" class="form-control" name="turma_aluno" >
-                                </div>
-
-                                <div class="form-group">
-                                <label> Data de Entrada </label>
-                                   <input type="date" class="form-control" name="data_entrada" > 
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Data do pagamento </label>
-                                    <input type="date" class="form-control" name="data_pag">
-                                </div>
-                        
-                                <div class="form-group " >
-                                    <label>Telefone 1 </label>
-                                    <input type="text" class="form-control" name="tel_aluno1" placeholder="Digite o telefone" >
-                                </div>
-                                <div class="form-group " >
-                                    <label>Telefone 2 </label>
-                                    <input type="text" class="form-control" name="tel_aluno2" placeholder="Digite o telefone" >
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-default"><a href="../../pagina/consulta/agenda.php">Cancelar</a></button>
-                                <input type="submit" class="btn btn-info" value="Save">
-                            </div>
-                        </form>
-                    </div><!-- modal content -->
-                </div><!-- modal dialog -->
-            </div><!-- fim cadastro -->
+           
      </div>
  </div>
           

@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../css/quarta.css" type="text/css">
+<link rel="stylesheet" href="../css/listapagamento.css" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
@@ -100,7 +100,8 @@ $(document).ready(function () {
                 </a>
                 <div class='dashboard-nav-dropdown-menu'>
                     <a href="../paginas/listaaluno.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
-                     </div>
+                    <a href="#addaluno" class="dashboard-nav-dropdown-item" data-toggle="modal">Cadastrar Alunos</a>
+                </div>
              </div>
              <div class='dashboard-nav-dropdown'>
                  <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle active">
@@ -108,138 +109,121 @@ $(document).ready(function () {
                  </a>
                  <div class='dashboard-nav-dropdown-menu'>
                      <a href="../paginas/listapagamento.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
-                     
                  </div>
              </div>
              </nav>
         </div><!--fim div nav-->
-		
-			<div class="dashboard-nav2"><center>08:00</center>
-				<hr class ="hr1">
-				<table>
-					<tr>
-					  <th>Nome</th>
-					  <th></th>
-					</tr>
-					<?php
-					$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-					$user ='root';
-					$password='';
-					
-					try{
-					$dbh= new PDO($dsn, $user, $password);
-					}
-					catch(PDOException $e){
-					echo 'Connection failed'. $e->getMessage();
-					}
-					$sql='SELECT * FROM alunos 
-					where turma = 7';
+        <div class="dashboard-nav2">   
+            <div class="divhead">
+                <center>Lista de pagamento</center>
+                
+                    
+            </div>
+			<hr class ="hr1">
+			<table>
+				<tr>
+                    <th>ID</th>
+					<th >Nome</th>
+                    <th>Mês</th>
+                    <th>Valor Mensal</th>
+		    <th style="padding-left:20px;">Data de Pagamento</th>
+                    <th style="padding-left:20px;">Forma de Pagamento</th>
+					<th>Opções</th>
+                </tr>
 
-					foreach($dbh->query($sql)as $row) {
-							  
-					 echo '<tr>';
-					 echo '<td class="td1">'. $row['nome'] . '</td>';
-					 echo '<td >';
-					 echo '<a class="info" data-toggle="modal">
-					  <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
-					 </a>';
-		 
-					 echo '<a class="editpet" data-toggle="modal">
-					 <i class="material-icons calendar_today" title="Editar Consulta">&#xe935;</i>
-					  </a>';
-					  echo '</td>';
-					 }
-							
-					?>
+				<?php
+				$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
+				$user ='root';
+				$password='';
 					
-				  </table>
-			</div>
-			<div class="dashboard-nav2"><center>13:00</center>
-				<hr class ="hr1">
-				<table>
-					<tr>
-					  <th>Nome</th>
-					  <th></th>
-					</tr>
-					<?php
-					$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-					$user ='root';
-					$password='';
-					
-					try{
-					$dbh= new PDO($dsn, $user, $password);
-					}
-					catch(PDOException $e){
-					echo 'Connection failed'. $e->getMessage();
-					}
-					$sql='SELECT * FROM alunos 
-					where turma = 8';
+				try{
+				$dbh= new PDO($dsn, $user, $password);
+				}
+				catch(PDOException $e){
+				echo 'Connection failed'. $e->getMessage();
+				}
+				$sql='SELECT * FROM alunos 
+                
+                inner join turma on turma = id_turma ';
 
-					foreach($dbh->query($sql)as $row) {
+				foreach($dbh->query($sql)as $row) {
 							  
-					 echo '<tr>';
-					 echo '<td class="td1">'. $row['nome'] . '</td>';
-					 echo '<td >';
-					 echo '<a class="info" data-toggle="modal">
-					  <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
-					 </a>';
-		 
-					 echo '<a class="editpet" data-toggle="modal">
-					 <i class="material-icons calendar_today" title="Editar Consulta">&#xe935;</i>
-					  </a>';
-					  echo '</td>';
-					 }
-							
-					?>
+					echo '<tr>';
+                    echo '<td>'. $row['id_aluno']             .'</td>';
+                    echo '<td>'. $row['nome']                 .'</td>';
+                    echo '<td>'. $row['endereco']             .'</td>';
+					echo '<td>'. $row['tel1']             .'</td>';
+                    echo '<td>'. $row['dia']           .'</td>';
+                    echo '<td>'. $row['horario']           .'</td>';
 					
-				  </table>
+                    echo'<td> 
+                    <a href="infoaluno.php?id='.$row['id_aluno'].'" style="color:#4286F0" > <i class="material-icons" data-toggle="tooltip" title="Detalhes Pagamento">&#xe853;</i> </a>
+					<a href="editaaluno.php?id_aluno='.$row['id_aluno'].'" > <i class="material-icons calendar_today" style="color:#68DF82;" title="Editar Consulta">&#xE254;</i> </a>
+					</td>';
+                      
+					}
+				?>	
+					
+					
+				</table>
 			</div>
 
-            <div class="dashboard-nav2"><center>15:00</center>
-				<hr class ="hr1">
-				<table>
-					<tr>
-					  <th>Nome</th>
-					  <th></th>
-					</tr>
-					<?php
-					$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-					$user ='root';
-					$password='';
-					
-					try{
-					$dbh= new PDO($dsn, $user, $password);
-					}
-					catch(PDOException $e){
-					echo 'Connection failed'. $e->getMessage();
-					}
-					$sql='SELECT * FROM alunos 
-					where turma = 9';
+             <!-- Adicionar aluno HTML -->
+            <div id="addaluno" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="../crud/addaluno.php" method="POST">
+                            <div class="modal-header"> 
+                                <h4 class="modal-title">Cadastrar pagamento</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body"> 
 
-					foreach($dbh->query($sql)as $row) {
-							  
-					 echo '<tr>';
-					 echo '<td class="td1">'. $row['nome'] . '</td>';
-					 echo '<td >';
-					 echo '<a class="info" data-toggle="modal">
-					  <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
-					 </a>';
-		 
-					 echo '<a class="editpet" data-toggle="modal">
-					 <i class="material-icons calendar_today" title="Editar Consulta">&#xe935;</i>
-					  </a>';
-					  echo '</td>';
-					 }
-							
-					?>
-					
-				  </table>
-			</div>
-		   
-		
-	</div>
-</div>
+                                <div class="form-group">
+                                    <label>Nome </label>
+                                    <input type="text" class="form-control" name="nome_aluno" placeholder="Digite o Nome Completo" >
+                                </div>
 
+                                <div class="form-group">
+                                    <label>Endereço </label>
+                                    <input type="text" class="form-control" name="endereco_aluno" placeholder="Digite o endereço">
+                                </div> 
+
+                                <div class="form-group">
+                               <label>Turma </label>
+                                    <input type="text" class="form-control" name="turma_aluno" >
+                                </div>
+
+                                <div class="form-group">
+                                <label> Data de Entrada </label>
+                                   <input type="date" class="form-control" name="data_entrada" > 
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Data do pagamento </label>
+                                    <input type="date" class="form-control" name="data_pag">
+                                </div>
+                        
+                                <div class="form-group " >
+                                    <label>Telefone 1 </label>
+                                    <input type="text" class="form-control" name="tel_aluno1" placeholder="Digite o telefone" >
+                                </div>
+                                <div class="form-group " >
+                                    <label>Telefone 2 </label>
+                                    <input type="text" class="form-control" name="tel_aluno2" placeholder="Digite o telefone" >
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default"><a href="../../pagina/consulta/agenda.php">Cancelar</a></button>
+                                <input type="submit" class="btn btn-info" value="Save">
+                            </div>
+                        </form>
+                    </div><!-- modal content -->
+                </div><!-- modal dialog -->
+            </div><!-- fim cadastro -->
+     </div>
+ </div>
+          
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -247,4 +231,5 @@ $(document).ready(function () {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
 </html>

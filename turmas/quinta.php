@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="quarta.css" type="text/css">
+<link rel="stylesheet" href="../css/quarta.css" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
@@ -82,10 +82,6 @@ $(document).ready(function () {
                 <a href="../index.html" class="dashboard-nav-item active">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
-
-                <a href="#" class="dashboard-nav-item">
-                    <i class="fas fa-file-upload"></i> Upload
-                </a>
             <div class='dashboard-nav-dropdown'>
                 <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
                     <i class="fas fa-photo-video"></i> Turmas
@@ -102,17 +98,15 @@ $(document).ready(function () {
                     <i class="fas fa-users"></i> Alunos
                 </a>
                 <div class='dashboard-nav-dropdown-menu'>
-                    <a href="#" class="dashboard-nav-dropdown-item">Todos Alunos</a>
-                    <a href="#" class="dashboard-nav-dropdown-item">Cadastrar Alunos</a>
-                </div>
+                    <a href="../paginas/listaaluno.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
+                     </div>
              </div>
              <div class='dashboard-nav-dropdown'>
                  <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle active">
                      <i class="fas fa-money-check-alt"></i> Pagamento
                  </a>
                  <div class='dashboard-nav-dropdown-menu'>
-                     <a href="../pagamento/listapagamento.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
-                     <a href="#addEmployeeModal" class="dashboard-nav-dropdown-item" data-toggle="modal">Adicionar Pagamento</a>
+                     <a href="../paginas/listapagamento.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
                      
                  </div>
              </div>

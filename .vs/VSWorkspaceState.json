@@ -1,7 +1,14 @@
 {
   "ExpandedNodes": [
     "",
+<<<<<<< HEAD
     "\\crud"
+=======
+    "\\crud",
+    "\\css",
+    "\\paginas",
+    "\\turmas"
+>>>>>>> 4fd86302c4f88d2b8c9f528442bc1f19b15d9859
   ],
   "PreviewInSolutionExplorer": false
 }
