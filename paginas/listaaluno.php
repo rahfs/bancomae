@@ -181,17 +181,26 @@ $(document).ready(function () {
 
                                 <div class="form-group">
                                     <label>Nome </label>
-                                    <input type="text" class="form-control" name="nome_aluno" placeholder="Digite o Nome Completo" >
+                                    <input type="text" class="form-control" name="nome" placeholder="Digite o Nome Completo" >
                                 </div>
 
                                 <div class="form-group">
                                     <label>Endereço </label>
-                                    <input type="text" class="form-control" name="endereco_aluno" placeholder="Digite o endereço">
+                                    <input type="text" class="form-control" name="endereco" placeholder="Digite o endereço">
                                 </div> 
 
+                                
                                 <div class="form-group">
-                               <label>Turma </label>
-                                    <input type="text" class="form-control" name="turma_aluno" >
+                                    <label>Turma </label>
+                                    <select class="form-control" id="id_turma" name="id_turma">
+                                        <option value="1">Quarta / 08:00</option>
+                                        <option value="2">Quarta / 10:00</option>
+                                        <option value="3">Quinta / 14:00</option>
+                                        <option value="4">Sexta / 09:00</option>
+                                        <option value="5">Sabado / 08:00</option>
+                                        <option value="6">Sabado / 13:00</option>
+                                        <option value="7">Sabado / 15:00</option>
+                                        </select>
                                 </div>
 
                                 <div class="form-group">
@@ -206,15 +215,15 @@ $(document).ready(function () {
                         
                                 <div class="form-group " >
                                     <label>Telefone 1 </label>
-                                    <input type="text" class="form-control" name="tel_aluno1" placeholder="Digite o telefone" >
+                                    <input type="text" class="form-control" name="tel1" placeholder="Digite o telefone" >
                                 </div>
                                 <div class="form-group " >
                                     <label>Telefone 2 </label>
-                                    <input type="text" class="form-control" name="tel_aluno2" placeholder="Digite o telefone" >
+                                    <input type="text" class="form-control" name="tel2" placeholder="Digite o telefone" >
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-default"><a href="../../pagina/consulta/agenda.php">Cancelar</a></button>
+                                <button class="btn btn-default"><a href="../paginas/listaalunos.php">Cancelar</a></button>
                                 <input type="submit" class="btn btn-info" value="Save">
                             </div>
                         </form>

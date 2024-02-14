@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../pagamenot/listapagamento.css" type="text/css">
+<link rel="stylesheet" href="../css/listapagamento.css" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
@@ -78,7 +78,7 @@ echo'<div id="addEmployeeModal" >
                                 echo'
                                 <option value="'.$row['id_mes'].'">'.$row['nome_mes'].'</option>';}?>
                                 
-                                echo'
+                                
                                 <option value="1">Janeiro</option>
                                 <option value="2">Fevereiro</option>
                                 <option value="3">Março</option>

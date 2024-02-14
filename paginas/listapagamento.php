@@ -162,7 +162,7 @@ echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
 					<a href="infopagamento.php?id='.$row['id_pagamento'].'" style="color:#4286F0" >
                         <i class="material-icons" data-toggle="tooltip" title="Detalhes Pagamento">&#xe853;</i>
                     </a>
-					<a href="editapagamento.php?id_pagamento='.$row['id_pagamento'].'" >
+					<a href="../crud/editapagamento.php?id_pagamento='.$row['id_pagamento'].'" >
 					    <i class="material-icons calendar_today" style="color:#68DF82;" title="Editar Consulta">&#xE254;</i>
 					</a>
 					</td>';
