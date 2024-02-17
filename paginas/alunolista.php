@@ -99,7 +99,7 @@ $(document).ready(function () {
                     <i class="fas fa-users"></i> Alunos
                 </a>
                 <div class='dashboard-nav-dropdown-menu'>
-                    <a href="../paginas/listaaluno.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
+                    <a href="../paginas/alunolista.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
                     <a href="#addaluno" class="dashboard-nav-dropdown-item" data-toggle="modal">Cadastrar Alunos</a>
                 </div>
              </div>
@@ -108,26 +108,26 @@ $(document).ready(function () {
                      <i class="fas fa-money-check-alt"></i> Pagamento
                  </a>
                  <div class='dashboard-nav-dropdown-menu'>
-                     <a href="../paginas/listapagamento.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
+                     <a href="../paginas/pagamentolista.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
                  </div>
              </div>
              </nav>
         </div><!--fim div nav-->
         <div class="dashboard-nav2">   
             <div class="divhead">
-                <center>Lista de pagamento</center>
+                <center>Lista de Alunos</center>
                 
                     
             </div>
 			<hr class ="hr1">
 			<table>
 				<tr>
-                    <th>ID</th>
+                   
 					<th >Nome</th>
-                    <th>Mês</th>
-                    <th>Valor Mensal</th>
-		    <th style="padding-left:20px;">Data de Pagamento</th>
-                    <th style="padding-left:20px;">Forma de Pagamento</th>
+                    <th>Endereço</th>
+                    <th>Telefone</th>
+		            <th>Dia de Aula</th>
+                    <th>Horario de Aula</th>
 					<th>Opções</th>
                 </tr>
 
@@ -149,16 +149,16 @@ $(document).ready(function () {
 				foreach($dbh->query($sql)as $row) {
 							  
 					echo '<tr>';
-                    echo '<td>'. $row['id_aluno']             .'</td>';
+                    
                     echo '<td>'. $row['nome']                 .'</td>';
                     echo '<td>'. $row['endereco']             .'</td>';
-					echo '<td>'. $row['tel1']             .'</td>';
-                    echo '<td>'. $row['dia']           .'</td>';
-                    echo '<td>'. $row['horario']           .'</td>';
+					echo '<td>'. $row['tel1']                 .'</td>';
+                    echo '<td>'. $row['dia']                  .'</td>';
+                    echo '<td>'. $row['horario']              .'</td>';
 					
                     echo'<td> 
-                    <a href="infoaluno.php?id='.$row['id_aluno'].'" style="color:#4286F0" > <i class="material-icons" data-toggle="tooltip" title="Detalhes Pagamento">&#xe853;</i> </a>
-					<a href="editaaluno.php?id_aluno='.$row['id_aluno'].'" > <i class="material-icons calendar_today" style="color:#68DF82;" title="Editar Consulta">&#xE254;</i> </a>
+                    <a href="alunoinfo.php?id_aluno='.$row['id_aluno'].'" style="color:#4286F0" > <i class="material-icons" data-toggle="tooltip" title="Detalhes Pagamento">&#xe853;</i> </a>
+					<a href="../crud/alunoedita.php?id_aluno='.$row['id_aluno'].'" > <i class="material-icons calendar_today" style="color:#68DF82;" title="Editar Consulta">&#xE254;</i> </a>
 					</td>';
                       
 					}
@@ -172,7 +172,7 @@ $(document).ready(function () {
             <div id="addaluno" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="../crud/addaluno.php" method="POST">
+                        <form action="../crud/alunoadd.php" method="POST">
                             <div class="modal-header"> 
                                 <h4 class="modal-title">Cadastrar pagamento</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -181,18 +181,19 @@ $(document).ready(function () {
 
                                 <div class="form-group">
                                     <label>Nome </label>
-                                    <input type="text" class="form-control" name="nome" placeholder="Digite o Nome Completo" >
+                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o Nome Completo" >
                                 </div>
 
                                 <div class="form-group">
                                     <label>Endereço </label>
-                                    <input type="text" class="form-control" name="endereco" placeholder="Digite o endereço">
+                                    <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite o endereço">
                                 </div> 
 
                                 
                                 <div class="form-group">
                                     <label>Turma </label>
-                                    <select class="form-control" id="id_turma" name="id_turma">
+                                    <select class="form-control" id="turma" name="turma">
+                                        <option value="0">--------------</option>
                                         <option value="1">Quarta / 08:00</option>
                                         <option value="2">Quarta / 10:00</option>
                                         <option value="3">Quinta / 14:00</option>
@@ -205,25 +206,25 @@ $(document).ready(function () {
 
                                 <div class="form-group">
                                 <label> Data de Entrada </label>
-                                   <input type="date" class="form-control" name="data_entrada" > 
+                                   <input type="date" class="form-control" id="data_ent" name="data_ent" > 
                                 </div>
 
                                 <div class="form-group">
                                     <label>Data do pagamento </label>
-                                    <input type="date" class="form-control" name="data_pag">
+                                    <input type="date" class="form-control" id="data_venc" name="data_venc">
                                 </div>
                         
                                 <div class="form-group " >
                                     <label>Telefone 1 </label>
-                                    <input type="text" class="form-control" name="tel1" placeholder="Digite o telefone" >
+                                    <input type="text" class="form-control" id="tel1" name="tel1" placeholder="Digite o telefone" >
                                 </div>
                                 <div class="form-group " >
                                     <label>Telefone 2 </label>
-                                    <input type="text" class="form-control" name="tel2" placeholder="Digite o telefone" >
+                                    <input type="text" class="form-control" id="tel2" name="tel2" placeholder="Digite o telefone" >
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-default"><a href="../paginas/listaalunos.php">Cancelar</a></button>
+                                <button class="btn btn-default"><a href="../paginas/alunolista.php">Cancelar</a></button>
                                 <input type="submit" class="btn btn-info" value="Save">
                             </div>
                         </form>

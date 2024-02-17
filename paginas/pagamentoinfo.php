@@ -65,7 +65,7 @@ echo'
 <div id="editEmployeeModal" >
   <div class="modal-dialog">
    <div class="modal-content">
-    <form action="listapagamento.php" method="GET">
+    <form action="pagamentolista.php" method="GET">
      <div class="modal-header">      
       <h4 class="modal-title">Informação do pagamento</h4>
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

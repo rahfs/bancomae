@@ -44,7 +44,7 @@ $sql = "SELECT * FROM alunos
 echo'<div id="addEmployeeModal" >
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="../crud/atualizapagamento.php" method="POST">
+                <form action="../crud/pagamentoatualiza.php" method="POST">
                     <div class="modal-header"> 
                         <h4 class="modal-title">Editar pagamento</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -127,7 +127,7 @@ echo'<div id="addEmployeeModal" >
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-default"><a href="../pagamento/listapagamento.php">Cancelar</a></button>
+                        <button class="btn btn-default"><a href="../paginas/pagamentolista.php">Cancelar</a></button>
                         <input type="submit" class="btn btn-info" value="Save">
                     </div>
                     <input type="hidden" name="id_pagamento" value="'.$row['id_pagamento'].'">
@@ -136,7 +136,7 @@ echo'<div id="addEmployeeModal" >
         </div>
     </div>';
  ?>}
-    ?>
+    
 </body>
 
 </html>

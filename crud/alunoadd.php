@@ -12,24 +12,24 @@ catch(PDOException $e){
 $nome = $_POST['nome'];
 $endereco = $_POST['endereco'];
 $turma = $_POST['turma'];
-$data_entrada = $_POST['data_entrada'];
-$data_pag = $_POST['data_pag'];
+$data_ent= $_POST['data_ent'];
+$data_venc = $_POST['data_venc'];
 $tel1 = $_POST['tel1'];
 $tel2 = $_POST['tel2'];
 
 
 $sql="INSERT INTO alunos
-( nome,endereco,turma,data_entrada,data_pag,tel1,tel2) 
+( nome,endereco,turma,data_ent,data_venc,tel1,tel2) 
 VALUES (
-'.$nome.',
-'.$endereco.',
+'$nome',
+'$endereco',
 '$turma',
-'.$data_entrada.',
-'$data_pag',
+'$data_ent',
+'$data_venc',
 '.$tel1.',
 '.$tel2.'
 )";
 $count = $dbh->exec($sql);
 
- header("Location: ../pagamento/listaaluno.php");
+ header("Location: ../paginas/alunolista.php");
 ?>

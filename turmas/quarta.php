@@ -99,7 +99,7 @@ $(document).ready(function () {
                     <i class="fas fa-users"></i> Alunos
                 </a>
                 <div class='dashboard-nav-dropdown-menu'>
-                    <a href="../paginas/listaaluno.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
+                    <a href="../paginas/alunolista.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
                      </div>
              </div>
              <div class='dashboard-nav-dropdown'>
@@ -107,7 +107,7 @@ $(document).ready(function () {
                      <i class="fas fa-money-check-alt"></i> Pagamento
                  </a>
                  <div class='dashboard-nav-dropdown-menu'>
-                     <a href="../paginas/listapagamento.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
+                     <a href="../paginas/pagamentolista.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
                      
                  </div>
              </div>

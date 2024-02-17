@@ -34,15 +34,16 @@ try{
 }
 
 
-$id= $_GET['id_pagamento'];
+$id= $_GET['id_aluno'];
 
 $sql = "SELECT * FROM alunos 
-                inner join turmas turma=id_turma  where id_aluno=$id";
+                inner join turma on turma=id_turma  where id_aluno=$id";
+
  foreach($dbh->query($sql)as $row){
-echo'<div id="addaluno" class="modal fade">
+echo'<div id="addaluno">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="../crud/addaluno.php" method="POST">
+                        <form action="../crud/alunoatualiza.php" method="POST">
                             <div class="modal-header"> 
                                 <h4 class="modal-title">Cadastrar pagamento</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -51,26 +52,25 @@ echo'<div id="addaluno" class="modal fade">
 
                                 <div class="form-group">
                                     <label>Nome </label>
-                                    <input type="text" class="form-control" name="nome" value="'.$row['nome'].'" >
+                                    <input type="text" class="form-control" id="nome" name="nome" value="'.$row['nome'].'" >
                                 </div>
 
                                 <div class="form-group">
                                     <label>Endereço </label>
-                                    <input type="text" class="form-control" name="endereco" value="'.$row['endereco'].'">
+                                    <input type="text" class="form-control" id=endereco"" name="endereco" value="'.$row['endereco'].'">
                                 </div> 
 
                                 <div class="form-group">
                                     <label>Turma </label>
-                                    <select class="form-control" id="turma" name="turma">
-                                        <option value="'.$row['id_turma'].'"> '.$row['dia'].' / '.$row['horario'].'</option>';}
-                                        ?>
-                                        <?php
-                                            $sqlaluno="SELECT * from alunos inner join turma on turma = id_turma order by id_turma asc";            
-                                            foreach($dbh->query($sqlaluno) as $row){
-                                            echo'
-                                            <option value="'.$row['id_turma'].'"> '.$row['dia'].' / '.$row['horario'].'</option>';
-                                            }?>
+                                    <select class="form-control" id="turma" name="turma">';?>
+                                    <?php
+                                     $sql = "SELECT * FROM alunos inner join turma on turma=id_turma  where id_aluno=$id";
 
+                                        foreach($dbh->query($sql)as $row){
+                                            echo'
+                                        <option value="'.$row['id_turma'].'"> '.$row['dia'].' / '.$row['horario'].'</option>';}?>
+                                        
+                                            <option value="0">--------------</option>
                                             <option value="1">Quarta / 08:00</option>
                                             <option value="2">Quarta / 10:00</option>
                                             <option value="3">Quinta / 14:00</option>
@@ -80,37 +80,39 @@ echo'<div id="addaluno" class="modal fade">
                                             <option value="7">Sabado / 15:00</option>
                                     </select>
                                 </div>
+
                                 <?php
                                 echo'
                                 <div class="form-group">
-                                <label> Data de Entrada </label>
-                                   <input type="date" class="form-control" name="data_entrada" value="'.$row['data_entrada'].'"> 
+                                    <label> Data de Entrada </label>
+                                    <input type="date" class="form-control"  name="data_ent" value="'.$row['data_ent'].'"> 
                                 </div>
 
                                 <div class="form-group">
                                     <label>Data do pagamento </label>
-                                    <input type="date" class="form-control" name="data_pag" value="'.$row['data_pag'].'">
+                                    <input type="date" class="form-control"  name="data_venc" value="'.$row['data_venc'].'">
                                 </div>
                         
                                 <div class="form-group " >
                                     <label>Telefone 1 </label>
-                                    <input type="text" class="form-control" name="tel1" value="'.$row['tel1'].'" >
+                                    <input type="text" class="form-control"  name="tel1" value="'.$row['tel1'].'" >
                                 </div>
                                 <div class="form-group " >
                                     <label>Telefone 2 </label>
-                                    <input type="text" class="form-control" name="tel2" value="'.$row['tel2'].'" >
+                                    <input type="text" class="form-control"  name="tel2" value="'.$row['tel2'].'" >
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-default"><a href="../paginas/listaaluno.php">Cancelar</a></button>
+                                <button class="btn btn-default"><a href="../paginas/alunolista.php">Cancelar</a></button>
                                 <input type="submit" class="btn btn-info" value="Save">
                             </div>
+                         <input type="hidden" name="id_aluno" value="'.$row['id_aluno'].'">
                         </form>
                     </div><!-- modal content -->
                 </div><!-- modal dialog -->
             </div><!-- fim cadastro -->
-            ?>}
-    ?>
+           ';}?>
+    
 </body>
 
 </html>

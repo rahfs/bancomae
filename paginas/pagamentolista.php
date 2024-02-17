@@ -99,7 +99,7 @@ $(document).ready(function () {
                     <i class="fas fa-users"></i> Alunos
                 </a>
                 <div class='dashboard-nav-dropdown-menu'>
-                    <a href="../paginas/listaaluno.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
+                    <a href="../paginas/alunolista.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
                      </div>
              </div>
              <div class='dashboard-nav-dropdown'>
@@ -107,7 +107,7 @@ $(document).ready(function () {
                      <i class="fas fa-money-check-alt"></i> Pagamento
                  </a>
                  <div class='dashboard-nav-dropdown-menu'>
-                     <a href="../paginas/listapagamento.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
+                     <a href="../paginas/pagamentolista.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
                      <a href="#addpagamento" class="dashboard-nav-dropdown-item" data-toggle="modal">Adicionar Pagamento</a>
                      
                  </div>
@@ -155,14 +155,14 @@ $(document).ready(function () {
                     echo '<td>'. $row['nome'] . '</td>';
                     echo '<td >'. $row['nome_mes'] . '</td>';
 					echo '<td class="icon" style="padding-left:15px;">'. $row['valor_pago'] . '</td>';
-echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
+                    echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
 					echo '<td style="padding-left:20px;">'. $row['nome_forma'] .'</td>';
                     
                     echo'<td>
-					<a href="infopagamento.php?id='.$row['id_pagamento'].'" style="color:#4286F0" >
+					<a href="pagamentoinfo.php?id='.$row['id_pagamento'].'" style="color:#4286F0" >
                         <i class="material-icons" data-toggle="tooltip" title="Detalhes Pagamento">&#xe853;</i>
                     </a>
-					<a href="../crud/editapagamento.php?id_pagamento='.$row['id_pagamento'].'" >
+					<a href="../crud/pagamentoedita.php?id_pagamento='.$row['id_pagamento'].'" >
 					    <i class="material-icons calendar_today" style="color:#68DF82;" title="Editar Consulta">&#xE254;</i>
 					</a>
 					</td>';
@@ -178,7 +178,7 @@ echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
             <div id="addpagamento" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="../crud/addpagamento.php" method="POST">
+                        <form action="../crud/pagamentoadd.php" method="POST">
                             <div class="modal-header"> 
                                 <h4 class="modal-title">Cadastrar pagamento</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -245,7 +245,7 @@ echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-default"><a href="../../pagina/consulta/agenda.php">Cancelar</a></button>
+                                <button class="btn btn-default"><a href="pagamentolista.php">Cancelar</a></button>
                                 <input type="submit" class="btn btn-info" value="Save">
                             </div>
                         </form>
