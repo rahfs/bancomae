@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../css/listapagamento.css" type="text/css">
+<link rel="stylesheet" href="../css/listaaluno2.css" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
@@ -100,6 +100,7 @@ $(document).ready(function () {
                 </a>
                 <div class='dashboard-nav-dropdown-menu'>
                     <a href="../paginas/alunolista.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
+                    <a href="../paginas/alunolista2.php" class="dashboard-nav-dropdown-item">Alunos sem turma</a>
                     <a href="#addaluno" class="dashboard-nav-dropdown-item" data-toggle="modal">Cadastrar Alunos</a>
                 </div>
              </div>
@@ -124,7 +125,7 @@ $(document).ready(function () {
 				<tr>
                    
 					<th >Nome</th>
-                    <th>Endereço</th>
+                    <th style="text-align:center">Endereço</th>
                     <th>Telefone</th>
 		            <th>Dia de Aula</th>
                     <th>Horario de Aula</th>

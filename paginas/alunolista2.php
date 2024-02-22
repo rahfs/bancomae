@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../css/listapagamento.css" type="text/css">
+<link rel="stylesheet" href="../css/listaaluno2.css" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
@@ -101,7 +101,8 @@ $(document).ready(function () {
                 <div class='dashboard-nav-dropdown-menu'>
                     <a href="../paginas/alunolista.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
                     <a href="../paginas/alunolista2.php" class="dashboard-nav-dropdown-item">Alunos sem turma</a>
-                     </div>
+                    <a href="#addaluno" class="dashboard-nav-dropdown-item" data-toggle="modal">Cadastrar Alunos</a>
+                </div>
              </div>
              <div class='dashboard-nav-dropdown'>
                  <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle active">
@@ -109,27 +110,24 @@ $(document).ready(function () {
                  </a>
                  <div class='dashboard-nav-dropdown-menu'>
                      <a href="../paginas/pagamentolista.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
-                     <a href="#addpagamento" class="dashboard-nav-dropdown-item" data-toggle="modal">Adicionar Pagamento</a>
-                     
                  </div>
              </div>
              </nav>
         </div><!--fim div nav-->
         <div class="dashboard-nav2">   
             <div class="divhead">
-                <center>Lista de pagamento</center>
+                <center>Lista de alunos sem turma</center>
                 
                     
             </div>
 			<hr class ="hr1">
 			<table>
 				<tr>
-                    <th>ID</th>
+                   
 					<th >Nome</th>
-                    <th>Mês</th>
-                    <th>Valor Mensal</th>
-		    <th style="padding-left:20px;">Data de Pagamento</th>
-                    <th style="padding-left:20px;">Forma de Pagamento</th>
+                    <th style="text-align:center">Endereço</th>
+                    <th>Telefone</th>
+		            
 					<th>Opções</th>
                 </tr>
 
@@ -144,42 +142,34 @@ $(document).ready(function () {
 				catch(PDOException $e){
 				echo 'Connection failed'. $e->getMessage();
 				}
-				$sql='SELECT * FROM alunos 
-                inner join pagamento on id_pagaluno = id_aluno 
-                inner join mes on mes.id_mes = pagamento.id_mes 
-                inner join formadepagamento on id_forma = forma_pag order by id_pagamento  desc';
+				$sql='SELECT * FROM alunos where turma = 0 order by nome asc';
 
 				foreach($dbh->query($sql)as $row) {
 							  
 					echo '<tr>';
-                    echo '<td scope="row">'. $row['id_pagamento'] . '</td>';
-                    echo '<td>'. $row['nome'] . '</td>';
-                    echo '<td >'. $row['nome_mes'] . '</td>';
-					echo '<td class="icon" style="padding-left:15px;">'. $row['valor_pago'] . '</td>';
-                    echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
-					echo '<td style="padding-left:20px;">'. $row['nome_forma'] .'</td>';
                     
-                    echo'<td>
-					<a href="pagamentoinfo.php?id='.$row['id_pagamento'].'" style="color:#4286F0" >
-                        <i class="material-icons" data-toggle="tooltip" title="Detalhes Pagamento">&#xe853;</i>
-                    </a>
-					<a href="../crud/pagamentoedita.php?id_pagamento='.$row['id_pagamento'].'" >
-					    <i class="material-icons calendar_today" style="color:#68DF82;" title="Editar Consulta">&#xE254;</i>
-					</a>
+                    echo '<td>'. $row['nome']                 .'</td>';
+                    echo '<td>'. $row['endereco']             .'</td>';
+					echo '<td>'. $row['tel1']                 .'</td>';
+                   /* echo '<td>'. $row['dia']                  .'</td>';
+                    echo '<td>'. $row['horario']              .'</td>';*/
+					
+                    echo'<td> 
+                   <a href="../crud/alunoedita2.php?id_aluno='.$row['id_aluno'].'" > <i class="material-icons calendar_today" style="color:#68DF82;" title="Editar Consulta">&#xE254;</i> </a>
 					</td>';
                       
 					}
-						?>	
+				?>	
 					
 					
 				</table>
 			</div>
-			
-            <!-- Adicionar pagamento HTML -->
-            <div id="addpagamento" class="modal fade">
+
+             <!-- Adicionar aluno HTML -->
+            <div id="addaluno" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="../crud/pagamentoadd.php" method="POST">
+                        <form action="../crud/alunoadd.php" method="POST">
                             <div class="modal-header"> 
                                 <h4 class="modal-title">Cadastrar pagamento</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -188,72 +178,56 @@ $(document).ready(function () {
 
                                 <div class="form-group">
                                     <label>Nome </label>
-                                    <select class="form-control" id="id_pagaluno" name="id_pagaluno">
-                                        <option value=""></option>
-                                        <?php
-                                        $sqlaluno="SELECT * from alunos 
-                                        order by nome asc";            
-                                        foreach($dbh->query($sqlaluno) as $row){
-                                
-                                        $id_pagaluno=$row['id_aluno'];
-                                        echo'
-                                        <option value= '.$row['id_aluno'].' >' .$row['nome'].' </option>';
-                                         }?>
-                                
-                                    </select>
+                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o Nome Completo" >
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Mês </label>
-                                    <select class="form-control" id="id_mes" name="id_mes">
-                                        <!--<option value="1">Janeiro</option>-->
-                                        <option value="2">Fevereiro</option>
-                                        <option value="3">Março</option>
-                                        <option value="4">Abril</option>
-                                        <option value="5">Maio</option>
-                                        <option value="6">Junho</option>
-                                        <option value="7">Julho</option>
-                                        <option value="8">Agosto</option>
-                                        <option value="9">Setembro</option>
-                                        <option value="10">Outubro</option>
-                                        <option value="11">Novembro</option>
-                                        <option value="12">Dezembro</option>
-                                    </select>
+                                    <label>Endereço </label>
+                                    <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite o endereço">
                                 </div> 
 
+                                
                                 <div class="form-group">
-                               <label>Forma de pagamento </label>
-                                    <select class="form-control" id="forma_pag" name="forma_pag">
-                                        <option value="1">Dinheiro</option>
-                                        <option value="2">Cartão</option>
-                                        <option value="3">Pix</option>
-                                    </select>
+                                    <label>Turma </label>
+                                    <select class="form-control" id="turma" name="turma">
+                                        <option value="0">--------------</option>
+                                        <option value="1">Quarta / 08:00</option>
+                                        <option value="2">Quarta / 10:00</option>
+                                        <option value="3">Quinta / 14:00</option>
+                                        <option value="4">Sexta / 09:00</option>
+                                        <option value="5">Sabado / 08:00</option>
+                                        <option value="6">Sabado / 13:00</option>
+                                        <option value="7">Sabado / 15:00</option>
+                                        </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Valor pagamento </label>
-                                    <input type="text" class="form-control" name="valor_pago" placeholder="Digite o valor do pagamento" >
+                                <label> Data de Entrada </label>
+                                   <input type="date" class="form-control" id="data_ent" name="data_ent" > 
                                 </div>
 
                                 <div class="form-group">
                                     <label>Data do pagamento </label>
-                                    <input type="date" class="form-control" name="data_pag">
+                                    <input type="date" class="form-control" id="data_venc" name="data_venc">
                                 </div>
                         
                                 <div class="form-group " >
-                                    <label>Descrição </label>
-                                    <textarea class="form-control" name="descricao" placeholder ="Digite uma descrição"></textarea>
+                                    <label>Telefone 1 </label>
+                                    <input type="text" class="form-control" id="tel1" name="tel1" placeholder="Digite o telefone" >
+                                </div>
+                                <div class="form-group " >
+                                    <label>Telefone 2 </label>
+                                    <input type="text" class="form-control" id="tel2" name="tel2" placeholder="Digite o telefone" >
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-default"><a href="pagamentolista.php">Cancelar</a></button>
+                                <button class="btn btn-default"><a href="../paginas/alunolista.php">Cancelar</a></button>
                                 <input type="submit" class="btn btn-info" value="Save">
                             </div>
                         </form>
                     </div><!-- modal content -->
                 </div><!-- modal dialog -->
             </div><!-- fim cadastro -->
-           
      </div>
  </div>
           

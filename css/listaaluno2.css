@@ -412,13 +412,17 @@ padding-left:15px;
 width: 900px;
 
 }
- th{
+ th {
      
-border-bottom: 10px black solid;
+padding-left:15px;
+}
+ td {
+     
+padding-left:15px;
 }
 tr {
 
-border-bottom: 10px black solid;
+border-bottom: 1px black solid;
 }
 .icon {
 width:20;

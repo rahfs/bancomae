@@ -100,6 +100,7 @@ $(document).ready(function () {
                 </a>
                 <div class='dashboard-nav-dropdown-menu'>
                     <a href="../paginas/alunolista.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
+					<a href="../paginas/alunolista2.php" class="dashboard-nav-dropdown-item">Alunos sem turma</a>
                      </div>
              </div>
              <div class='dashboard-nav-dropdown'>
