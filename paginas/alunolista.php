@@ -145,7 +145,7 @@ $(document).ready(function () {
 				}
 				$sql='SELECT * FROM alunos 
                 
-                inner join turma on turma = id_turma ';
+                inner join turma on turma = id_turma order by nome asc';
 
 				foreach($dbh->query($sql)as $row) {
 							  

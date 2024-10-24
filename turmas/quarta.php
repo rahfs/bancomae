@@ -141,8 +141,8 @@ $(document).ready(function () {
 					 echo '<tr>';
 					 echo '<td class="td1">'. $row['nome'] . '</td>';
 					 echo '<td >';
-					 echo '<a class="info" data-toggle="modal">
-					  <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
+					 echo '<a  href="../paginas/alunoinfo.php?id='.$row['id_aluno'].'" style="color:#4286F0" >
+					  <i class="material-icons assignment_late"  data-toggle="tooltip " title="Info Consulta">&#xe85f; </i>
 					 </a>';
 		 
 					 echo '<a class="editpet" data-toggle="modal">
@@ -181,8 +181,8 @@ $(document).ready(function () {
 					 echo '<tr>';
 					 echo '<td class="td1">'. $row['nome'] . '</td>';
 					 echo '<td >';
-					 echo '<a class="info" data-toggle="modal">
-					  <i class="material-icons assignment_late" title="Info Consulta">&#xe85f; </i>
+					 echo '<a class="info" data-toggle="modal" href="../paginas/alunoinfo.php?id='.$row['id_aluno'].'" style="color:#4286F0" >
+					  <i class="material-icons assignment_late"  data-toggle="tooltip"title="Info Consulta">&#xe85f; </i>
 					 </a>';
 		 
 					 echo '<a class="editpet" data-toggle="modal">

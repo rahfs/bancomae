@@ -34,7 +34,7 @@ try{
 }
 
 
-$id_aluno= $_GET['id_aluno'];
+$id_aluno= $_GET['id'];
 
 $sql = "SELECT * FROM alunos 
                 inner join turma on turma=id_turma  where id_aluno=$id_aluno";

@@ -191,7 +191,7 @@ $(document).ready(function () {
                                     <select class="form-control" id="id_pagaluno" name="id_pagaluno">
                                         <option value=""></option>
                                         <?php
-                                        $sqlaluno="SELECT * from alunos 
+                                        $sqlaluno="SELECT * from alunos inner join turma on turma=id_turma 
                                         order by nome asc";            
                                         foreach($dbh->query($sqlaluno) as $row){
                                 
