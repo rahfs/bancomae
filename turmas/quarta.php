@@ -120,7 +120,7 @@ $(document).ready(function () {
 				<table>
 					<tr>
 					  <th>Nome</th>
-					  <th></th>
+					  
 					</tr>
 					<?php
 					$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
@@ -148,7 +148,7 @@ $(document).ready(function () {
 					 echo '<a class="editpet" data-toggle="modal">
 					 <i class="material-icons calendar_today" title="Editar Consulta">&#xe935;</i>
 					  </a>';
-					  echo '</td>';
+					  echo '</td></tr>';
 					 }
 							
 					?>
