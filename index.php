@@ -38,7 +38,7 @@ require 'banco.php';
           <li>
             <a href="#">Alunos</a>
             <ul class="dropdown">
-              <li><a href="../paginas/alunolista.php">Todos Alunos</a></li>
+              <li><a href="paginas/alunolista.php">Todos Alunos</a></li>
             </ul>
           </li>
 
@@ -47,7 +47,7 @@ require 'banco.php';
 
             <ul class="dropdown">
               <li>
-                <a href="../paginas/pagamentolista.php">Lista de pagamentos</a>
+                <a href="paginas/pagamentolista.php">Lista de pagamentos</a>
               </li>
             </ul>
           </li>
@@ -97,7 +97,7 @@ order by id_turma";
 
 
 
-           <div class="table-container"><!-- coluna 1 -->
+           <div class="table-container"><!-- coluna 2 -->
                     	<div class="row-item"><p>Numero de alunos</p></div>
                     	<div class="table-row">
         					<div class="row-item">Dia</div>
@@ -135,7 +135,7 @@ order by id_turma";
 
 
 
-           <div class="table-container"><!-- coluna 1 -->
+           <div class="table-container"><!-- coluna 3 -->
                     	<div class="row-item"><p>Numero de alunos</p></div>
                     	<div class="table-row">
         					<div class="row-item">Dia</div>

@@ -11,170 +11,119 @@
         }
 ?>
 
-<html>
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="../css/listapagamento.css" type="text/css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu com JavaScript</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arvo&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        const mobileScreen = window.matchMedia("(max-width: 990px )");
-$(document).ready(function () {
-    $(".dashboard-nav-dropdown-toggle").click(function () {
-        $(this).closest(".dashboard-nav-dropdown")
-            .toggleClass("show")
-            .find(".dashboard-nav-dropdown")
-            .removeClass("show");
-        $(this).parent()
-            .siblings()
-            .removeClass("show");
-    });
-    $(".menu-toggle").click(function () {
-        if (mobileScreen.matches) {
-            $(".dashboard-nav").toggleClass("mobile-show");
-        } else {
-            $(".dashboard").toggleClass("dashboard-compact");
-        }
-    });
-});
-    </script>
-    <style>
-    button a {
-      color: black;
-    }
+  <body>
+    <header>
+      <p>Curso Marta Freitas</p>
+    </header>
 
-    button a:hover{
-      text-decoration: none;
-    }
-    </style>
-    
-</head>
-<body  style="background-color:#b8b7b4;">
+    <header>
+      <nav role="navigation" class="primary-navigation">
+        <ul>
+          <li><a href="#">InÃ­cio</a></li>
+          <li>
+            <a href="#">Turmas</a>
+            <ul class="dropdown">
+              <li><a href="../turmas/quarta.php">Quarta</a></li>
+              <li><a href="../turmas/quinta.html">Quinta</a></li>
+              <li><a href="../turmas/sexta.html">Sexta</a></li>
+              <li><a href="../turmas/sabado.html">Sabado</a></li>
+            </ul>
+          </li>
 
-<script type="text/javascript">
-      $(document).ready(function(){
-        $("input[name='nomepet']").blur(function(){
-          var $nome = $("input[name='nome']");
-          $.getJSON('function.php',{
-            nomepet:$(this).val()
-          },function(json){
-              $nome.val(json.nome);
-            });
-        });
-      });
-</script>
+          <li>
+            <a href="#">Alunos</a>
+            <ul class="dropdown">
+              <li><a href="../paginas/alunolista.php">Todos Alunos</a></li>
+              <li><a href="../paginas/alunolista2.php">Todos Alunos</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#">Pagamentos</a>
+
+            <ul class="dropdown">
+              <li>
+                <a href="paginas/pagamentolista.php">Lista de pagamentos</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- header e menu acima-->
+
+    <section>
+
+      <div class="main-container"><!-- comeÃ§o tabela numero aluno -->
+                <div class="table-container"><!-- coluna 1 -->
+                    	<div class="row-item"><p>Lista de Pagamentos</p></div>
+                    	<div class="table-row">
+        					<div class="row-item">ID</div>
+        					<div class="row-item">Nome</div>
+        					<div class="row-item">MÃªs</div>
+                            <div class="row-item">Valor Mensal</div>
+        					<div class="row-item"> Data de Pagamento</div>
+        					<div class="row-item">Forma de Pagamento</div>
+        					<div class="row-item">OpÃ§Ãµes</div>
+        				</div>
 
 
-<div class="d-flex flex-row">
-    <div class="dashboard">
-        <div class="dashboard-nav">
-            <header>
-                <a href="" class="brand-logo">
-                <i class="fa fa-cog fa-spin fa-3x fa-fw"></i> <span>Marta Freitas</span></a>
-            </header>
-            <nav class="dashboard-nav-list">
-            <div class="nav-item-divider"></div>
-
-                <a href="../index.html" class="dashboard-nav-item active">
-                    <i class="fas fa-tachometer-alt"></i> Dashboard
-                </a>
-            <div class='dashboard-nav-dropdown'>
-                <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
-                    <i class="fas fa-photo-video"></i> Turmas
-                </a>
-                <div class='dashboard-nav-dropdown-menu'>
-                    <a href="../turmas/quarta.php" class="dashboard-nav-dropdown-item">Quarta</a>
-                    <a href="../turmas/quinta.php" class="dashboard-nav-dropdown-item">Quinta</a>
-                    <a href="../turmas/sexta.php" class="dashboard-nav-dropdown-item">Sexta</a>
-                    <a href="../turmas/sabado.php" class="dashboard-nav-dropdown-item">Sabado</a>
-                 </div>
-            </div>
-            <div class='dashboard-nav-dropdown'>
-                <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
-                    <i class="fas fa-users"></i> Alunos
-                </a>
-                <div class='dashboard-nav-dropdown-menu'>
-                    <a href="../paginas/alunolista.php" class="dashboard-nav-dropdown-item">Todos Alunos</a>
-                    <a href="../paginas/alunolista2.php" class="dashboard-nav-dropdown-item">Alunos sem turma</a>
-                     </div>
-             </div>
-             <div class='dashboard-nav-dropdown'>
-                 <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle active">
-                     <i class="fas fa-money-check-alt"></i> Pagamento
-                 </a>
-                 <div class='dashboard-nav-dropdown-menu'>
-                     <a href="../paginas/pagamentolista.php" class="dashboard-nav-dropdown-item ">Lista de pagamentos</a>
-                     <a href="#addpagamento" class="dashboard-nav-dropdown-item" data-toggle="modal">Adicionar Pagamento</a>
-                     
-                 </div>
-             </div>
-             </nav>
-        </div><!--fim div nav-->
-        <div class="dashboard-nav2">   
-            <div class="divhead">
-                <center>Lista de pagamento</center>
+       <?php
+            $dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
+            $user ='root';
+            $password='';
                 
-                    
-            </div>
-			<hr class ="hr1">
-			<table>
-				<tr>
-                    <th>ID</th>
-					<th >Nome</th>
-                    <th>Mês</th>
-                    <th>Valor Mensal</th>
-		    <th style="padding-left:20px;">Data de Pagamento</th>
-                    <th style="padding-left:20px;">Forma de Pagamento</th>
-					<th>Opções</th>
-                </tr>
+            try{
+            $dbh= new PDO($dsn, $user, $password);
+            }
+            catch(PDOException $e){
+            echo 'Connection failed'. $e->getMessage();
+            }
+            $sql='SELECT * FROM alunos 
+            inner join pagamento on id_pagaluno = id_aluno 
+            inner join mes on mes.id_mes = pagamento.id_mes 
+            inner join formadepagamento on id_forma = forma_pag order by id_pagamento  desc';
 
-				<?php
-				$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-				$user ='root';
-				$password='';
-					
-				try{
-				$dbh= new PDO($dsn, $user, $password);
-				}
-				catch(PDOException $e){
-				echo 'Connection failed'. $e->getMessage();
-				}
-				$sql='SELECT * FROM alunos 
-                inner join pagamento on id_pagaluno = id_aluno 
-                inner join mes on mes.id_mes = pagamento.id_mes 
-                inner join formadepagamento on id_forma = forma_pag order by id_pagamento  desc';
+            foreach($dbh->query($sql)as $row) {
+           
+           
+           echo'  
+            <div class="table-row">
+               <div class="row-item">'. $row['id_pagamento'] .'</div>
+               <div class="row-item">'. $row['nome'] .'</div>
+               <div class="row-item">'. $row['nome_mes'] .'</div>
+               <div class="row-item">'. $row['valor_pago'] .'</div>
+               <div class="row-item">'. $row['data_pag'] .'</div>
+               <div class="row-item">'. $row['nome_forma'] .'</div>
+               <div class="row-item"><a href="pagamentoinfo.php?id='.$row['id_pagamento'].'" style="color:#4286F0" >
+               <i class="material-icons" data-toggle="tooltip" title="Detalhes Pagamento">&#xe853;</i>
+           </a>
+           <a href="../crud/pagamentoedita.php?id_pagamento='.$row['id_pagamento'].'" >
+               <i class="material-icons calendar_today" style="color:#68DF82;" title="Editar Consulta">&#xE254;</i>
+           </a></div>
+            </div>';
+                  
+                
+            }?>
+           </div><!-- table conteiner -->
 
-				foreach($dbh->query($sql)as $row) {
-							  
-					echo '<tr>';
-                    echo '<td scope="row">'. $row['id_pagamento'] . '</td>';
-                    echo '<td>'. $row['nome'] . '</td>';
-                    echo '<td >'. $row['nome_mes'] . '</td>';
-					echo '<td class="icon" style="padding-left:15px;">'. $row['valor_pago'] . '</td>';
-                    echo '<td style="padding-left:40px;">'. $row['data_pag'] . '</td>';
-					echo '<td style="padding-left:20px;">'. $row['nome_forma'] .'</td>';
-                    
-                    echo'<td>
-					<a href="pagamentoinfo.php?id='.$row['id_pagamento'].'" style="color:#4286F0" >
-                        <i class="material-icons" data-toggle="tooltip" title="Detalhes Pagamento">&#xe853;</i>
-                    </a>
-					<a href="../crud/pagamentoedita.php?id_pagamento='.$row['id_pagamento'].'" >
-					    <i class="material-icons calendar_today" style="color:#68DF82;" title="Editar Consulta">&#xE254;</i>
-					</a>
-					</td>';
-                      
-					}
-						?>	
-					
-					
-				</table>
-			</div>
-			
+        </div> <!-- main--> 
+        
+        </section>
+
             <!-- Adicionar pagamento HTML -->
             <div id="addpagamento" class="modal fade">
                 <div class="modal-dialog">
@@ -204,11 +153,11 @@ $(document).ready(function () {
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Mês </label>
+                                    <label>Mï¿½s </label>
                                     <select class="form-control" id="id_mes" name="id_mes">
                                         <!--<option value="1">Janeiro</option>-->
                                         <option value="2">Fevereiro</option>
-                                        <option value="3">Março</option>
+                                        <option value="3">Marï¿½o</option>
                                         <option value="4">Abril</option>
                                         <option value="5">Maio</option>
                                         <option value="6">Junho</option>
@@ -225,7 +174,7 @@ $(document).ready(function () {
                                <label>Forma de pagamento </label>
                                     <select class="form-control" id="forma_pag" name="forma_pag">
                                         <option value="1">Dinheiro</option>
-                                        <option value="2">Cartão</option>
+                                        <option value="2">Cartï¿½o</option>
                                         <option value="3">Pix</option>
                                     </select>
                                 </div>
@@ -241,8 +190,8 @@ $(document).ready(function () {
                                 </div>
                         
                                 <div class="form-group " >
-                                    <label>Descrição </label>
-                                    <textarea class="form-control" name="descricao" placeholder ="Digite uma descrição"></textarea>
+                                    <label>Descriï¿½ï¿½o </label>
+                                    <textarea class="form-control" name="descricao" placeholder ="Digite uma descriï¿½ï¿½o"></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
