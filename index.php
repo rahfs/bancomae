@@ -178,6 +178,6 @@ order by id_turma";
         </section>
 
 
-    <script src="index.js"></script>
+   
   </body>
 </html>

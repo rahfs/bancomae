@@ -125,12 +125,12 @@ section div {
 
 .main-container {
     width: 80%;
-    height: 100%;
     display: flex;
     padding-left: 10%;
     justify-content: center;
     align-items: center;
     background-color: #fafafa;
+    
 }
 
 .table-container {
@@ -138,9 +138,15 @@ section div {
     flex-flow: column nowrap;
     background-color: white;
     width: 120%;
+    
     border-radius: 4px;
     border: 1px solid #DADADA;
     box-shadow: 0px 1px 4px rgba(0, 0, 0, .08);
+    overflow-y: scroll;
+    height:600px;
+}
+.table-container::-webkit-scrollbar {
+    display: none;
 }
 
 .table-row {
@@ -187,3 +193,17 @@ section div {
         .row-sub-container .row-item:last-child {
             border-bottom: 0;
         }
+
+.dashboard-nav-dropdown-item {
+    min-height: 40px;
+    padding: 8px 20px 8px 70px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    transition: ease-out 0.5s;
+}

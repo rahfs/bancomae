@@ -1,4 +1,4 @@
-nav {
+﻿nav {
     &.primary-navigation
 
 {
@@ -125,10 +125,8 @@ section div {
 }*/
 
 
-
 .main-container {
     width: 80%;
-    height: 100%;
     display: flex;
     padding-left: 10%;
     justify-content: center;
@@ -163,7 +161,7 @@ section div {
     display: flex;
     flex: 1;
     font-size: 14px;
-    padding: 8px 0;
+    padding: 8px;
     justify-content: center;
     align-items: center;
     transition: all 0.15s ease-in-out;
@@ -190,3 +188,8 @@ section div {
         .row-sub-container .row-item:last-child {
             border-bottom: 0;
         }
+
+.row-item p{
+height:20px;
+
+}
