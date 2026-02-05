@@ -15,7 +15,7 @@
   <head>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu com JavaScript</title>
+    <title>Lista de Pagamento</title>
     <link rel="stylesheet" href="../css/listapagamento.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Arvo&display=swap"
@@ -39,10 +39,10 @@
           <li>
             <a href="#">Turmas</a>
             <ul class="dropdown">
-              <li><a href="../turmas/quarta.php">Quarta</a></li>
-              <li><a href="../turmas/quinta.html">Quinta</a></li>
-              <li><a href="../turmas/sexta.html">Sexta</a></li>
-              <li><a href="../turmas/sabado.html">Sabado</a></li>
+              
+              <li><a href="../turmas/quinta.php">Quinta</a></li>
+              <li><a href="../turmas/sexta.php">Sexta</a></li>
+              <li><a href="../turmas/sabado.php">Sabado</a></li>
             </ul>
           </li>
 
@@ -116,26 +116,15 @@
                        <div class="row-item">'. $row['data_pag'] .'</div>
                        <div class="row-item">'. $row['nome_forma'] .'</div>
                        <div class="row-item">
-                        <a href="pagamentoinfo.php?id='.$row['id_pagamento'].'" style="color:#4286F0" >
-                        a
-                        </a>
-                        <a href="../crud/pagamentoedita.php?id_pagamento='.$row['id_pagamento'].'" >
-                        b
-                        </a>
+                        <a href="pagamentoinfo.php?id='.$row['id_pagamento'].'" style="color:#4286F0" >a </a>
+                        <a href="../crud/pagamentoedita.php?id_pagamento='.$row['id_pagamento'].'" >b</a>
                         </div>
                         </div>  ';
-                  
-                
-                    }?>
-                    </div>
-                </div><!-- table conteiner -->
-
-        </div> <!-- main--> 
-        
-        </section>
+                        }?>
+               </div><!-- table conteiner -->
+      </div> <!-- main--> 
+    </section>
     
-     </div>
- </div>
 
  <!-- Adicionar pagamento HTML -->
 <div id="addpagamento" class="modal fade">

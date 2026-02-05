@@ -35,7 +35,7 @@
 		  <li>
 			<a href="#">Turmas</a>
 			<ul class="dropdown">
-			  <li><a href="quarta.php">Quarta</a></li>
+			  <!--<li><a href="quarta.php">Quarta</a></li>-->
 			  <li><a href="quinta.php">Quinta</a></li>
 			  <li><a href="sexta.php">Sexta</a></li>
 			  <li><a href="sabado.php">Sabado</a></li>
@@ -98,7 +98,7 @@
 		</div><!-- table conteiner -->
 
 		<div class="table-container"><!-- coluna 2 -->
-			<div class="row-item"><p>13:00</p></div>
+			<div class="row-item"><p>10:00</p></div>
 
 			<?php
 				$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
@@ -125,34 +125,7 @@
 
 				}?>
 		</div><!-- table conteiner -->
-		<div class="table-container"><!-- coluna 3 -->
-				<div class="row-item"><p>15:00</p></div>
-
-				<?php
-				$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-				$user ='root';
-				$password='';
-					
-				try{
-				$dbh= new PDO($dsn, $user, $password);
-				}
-				catch(PDOException $e){
-				echo 'Connection failed'. $e->getMessage();
-				}
-				$sql='SELECT * FROM alunos 
-				where turma = 7';
-
-				foreach($dbh->query($sql)as $row) {
-		   
-		   
-				echo'  
-				<div class="table-row">
-					<div class="row-item">'.$row['nome'].'</div>
-			   
-				</div>';	
-
-				}?>
-		</div><!-- table conteiner -->
+		
 	</div>
 		
 </section>

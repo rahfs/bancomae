@@ -59,7 +59,8 @@ $id= $_GET['id'];
 $sql = "SELECT * FROM alunos 
                 inner join pagamento on id_pagaluno = id_aluno 
                 inner join mes on mes.id_mes = pagamento.id_mes 
-                inner join formadepagamento on id_forma = forma_pag  where id_pagamento=$id";
+                inner join formadepagamento on id_forma = forma_pag  
+                where id_pagamento=$id";
  foreach($dbh->query($sql)as $row){
 echo'
 <div id="editEmployeeModal" >

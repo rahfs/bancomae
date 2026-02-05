@@ -71,10 +71,11 @@ echo'<div id="addaluno">
                                         <option value="'.$row['id_turma'].'"> '.$row['dia'].' / '.$row['horario'].'</option>';}?>
                                         
                                             <option value="0">--------------</option>
-                                            <option value="1">Quarta / 08:00</option>
-                                            <option value="2">Quarta / 10:00</option>
-                                            <option value="3">Quinta / 14:00</option>
-                                            <option value="4">Sexta / 09:00</option>
+                                            <option value="1">Quinta / 14:00</option>
+                                            <option value="2">Quinta / 19:00</option>
+                                            <option value="3">Sexta / 08:00</option>
+                                            <option value="4">Sexta / 10:30</option>
+                                            <option value="11">Sexta / 14:00</option>
                                             <option value="5">Sabado / 08:00</option>
                                             <option value="6">Sabado / 13:00</option>
                                             <option value="7">Sabado / 15:00</option>

@@ -34,10 +34,11 @@ try{
 }
 
 
-$id_aluno= $_GET['id'];
+$id= $_GET['id'];
 
 $sql = "SELECT * FROM alunos 
-                inner join turma on turma=id_turma  where id_aluno=$id_aluno";
+inner join turma on alunos.turma=turma.id_turma  
+where alunos.id_aluno=$id";
 
  foreach($dbh->query($sql)as $row){
 echo'<div id="addaluno">
@@ -94,7 +95,9 @@ echo'<div id="addaluno">
                     </div><!-- modal content -->
                 </div><!-- modal dialog -->
             </div><!-- fim cadastro -->
-           ';}?>
+           ';
+ }
+           ?>
     
 </body>
 

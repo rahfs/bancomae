@@ -8,7 +8,7 @@ require 'banco.php';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu com JavaScript</title>
+    <title>Tela Inicial</title>
     <link rel="stylesheet" href="css/index.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Arvo&display=swap"
@@ -28,10 +28,10 @@ require 'banco.php';
           <li>
             <a href="#">Turmas</a>
             <ul class="dropdown">
-              <li><a href="turmas/quarta.php">Quarta</a></li>
-              <li><a href="turmas/quinta.html">Quinta</a></li>
-              <li><a href="turmas/sexta.html">Sexta</a></li>
-              <li><a href="turmas/sabado.html">Sabado</a></li>
+              
+              <li><a href="turmas/quinta.php">Quinta</a></li>
+              <li><a href="turmas/sexta.php">Sexta</a></li>
+              <li><a href="turmas/sabado.php">Sabado</a></li>
             </ul>
           </li>
 
@@ -60,7 +60,9 @@ require 'banco.php';
 
       <div class="main-container"><!-- começo tabela numero aluno -->
                 <div class="table-container"><!-- coluna 1 -->
-                    	<div class="row-item"><p>Numero de alunos</p></div>
+                <div class="table-row">
+                    	<div class="row-item"><p>Numero de alunos por turma</p></div>
+                        </div>
                     	<div class="table-row">
         					<div class="row-item">Dia</div>
         					<div class="row-item">Horario</div>
@@ -98,8 +100,11 @@ order by id_turma";
 
 
            <div class="table-container"><!-- coluna 2 -->
+           <div class="table-row">
                     	<div class="row-item"><p>Numero de alunos</p></div>
-                    	<div class="table-row">
+                        </div>
+                    	
+                        <div class="table-row flex space-around">
         					<div class="row-item">Dia</div>
         					<div class="row-item">Horario</div>
         					<div class="row-item">Alunos</div>
@@ -123,7 +128,7 @@ order by id_turma";
            
            
            echo'  
-            <div class="table-row">
+            <div class="table-row ">
                <div class="row-item">'.$row['dia'].'</div>
                <div class="row-item">'.$row['horario'].'</div>
                <div class="row-item">'.$row['count(id_aluno)'].'</div>
@@ -136,12 +141,10 @@ order by id_turma";
 
 
            <div class="table-container"><!-- coluna 3 -->
-                    	<div class="row-item"><p>Numero de alunos</p></div>
-                    	<div class="table-row">
-        					<div class="row-item">Dia</div>
-        					<div class="row-item">Horario</div>
-        					<div class="row-item">Alunos</div>
-        				</div>
+            <div class="table-row">
+                    	<div class="row-item"><p>Numero de Alunos totais</p></div>
+            </div>
+                    	
 
 
        <?php
@@ -153,17 +156,16 @@ order by id_turma";
             } catch(PDOException $e){
             echo 'Connection failed'. $e->getMessage(); } 
             
-            $sql = "select dia,horario, count(id_aluno) from alunos 
+            $sql = "select count(id_aluno) from alunos 
 inner join turma on turma= id_turma 
-GROUP by dia asc, horario asc 
+where id_turma > 0  
 order by id_turma";
             foreach($dbh->query($sql)as $row){
            
            
            echo'  
-            <div class="table-row">
-               <div class="row-item">'.$row['dia'].'</div>
-               <div class="row-item">'.$row['horario'].'</div>
+            <div class="table-row ">
+               
                <div class="row-item">'.$row['count(id_aluno)'].'</div>
             </div>';	
 
