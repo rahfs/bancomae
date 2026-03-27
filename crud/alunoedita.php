@@ -1,119 +1,74 @@
-<html>
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="../css/listaaluno.css" type="text/css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<?php
+require_once __DIR__ . '/../banco.php';
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
- 
-    <style>
-    button a {
-      color: black;
-    }
-
-    button a:hover{
-      text-decoration: none;
-    }
-    </style>
-    
-</head>
-<body>
- <?php
-$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-$user ='root';
-$password='';
-
-try{
-    $dbh= new PDO($dsn, $user, $password);
-} catch(PDOException $e){
-    echo 'Connection failed'. $e->getMessage();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
+$id = $_GET['id_aluno'] ?? null;
+$aluno = null;
 
-$id= $_GET['id_aluno'];
+if ($id) {
+    try {
+        $dbh = Banco::conectar();
+        $q = $dbh->prepare("SELECT * FROM alunos WHERE id_aluno = ?");
+        $q->execute([$id]);
+        $aluno = $q->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("Erro ao carregar aluno: " . $e->getMessage());
+    }
+}
 
-$sql = "SELECT * FROM alunos 
-                inner join turma on turma=id_turma  where id_aluno=$id";
+if (!$aluno) {
+    header("Location: ../paginas/alunolista.php");
+    exit();
+}
+?>
 
- foreach($dbh->query($sql)as $row){
-echo'<div id="addaluno">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form action="../crud/alunoatualiza.php" method="POST">
-                            <div class="modal-header"> 
-                                <h4 class="modal-title">Cadastrar pagamento</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            </div>
-                            <div class="modal-body"> 
+<?php require_once __DIR__ . '/../components/header.php'; ?>
 
-                                <div class="form-group">
-                                    <label>Nome </label>
-                                    <input type="text" class="form-control" id="nome" name="nome" value="'.$row['nome'].'" >
-                                </div>
+<section>
+    <div class="main-container">
+        <div class="table-container" style="max-width: 600px; margin: 0 auto; padding: 30px;">
+            <h2 style="margin-bottom: 20px; color: #3ca0e7;">Editar Aluno</h2>
+            <form action="alunoatualiza.php" method="POST">
+                <input type="hidden" name="id_aluno" value="<?= $aluno['id_aluno'] ?>">
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: bold; margin-bottom: 5px;">Nome</label>
+                    <input type="text" name="nome" value="<?= htmlspecialchars($aluno['nome']) ?>" 
+                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" required>
+                </div>
 
-                                <div class="form-group">
-                                    <label>Endere�o </label>
-                                    <input type="text" class="form-control" id=endereco"" name="endereco" value="'.$row['endereco'].'">
-                                </div> 
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: bold; margin-bottom: 5px;">Endereço</label>
+                    <input type="text" name="endereco" value="<?= htmlspecialchars($aluno['endereco'] ?? '') ?>" 
+                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
 
-                                <div class="form-group">
-                                    <label>Turma </label>
-                                    <select class="form-control" id="turma" name="turma">';?>
-                                    <?php
-                                     $sql = "SELECT * FROM alunos inner join turma on turma=id_turma  where id_aluno=$id";
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: bold; margin-bottom: 5px;">Turma</label>
+                    <select name="turma" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <option value="0" <?= $aluno['turma'] == 0 ? 'selected' : '' ?>>Sem Turma</option>
+                        <option value="1" <?= $aluno['turma'] == 1 ? 'selected' : '' ?>>Quinta / 14:00</option>
+                        <option value="2" <?= $aluno['turma'] == 2 ? 'selected' : '' ?>>Quinta / 19:00</option>
+                    </select>
+                </div>
 
-                                        foreach($dbh->query($sql)as $row){
-                                            echo'
-                                        <option value="'.$row['id_turma'].'"> '.$row['dia'].' / '.$row['horario'].'</option>';}?>
-                                        
-                                            <option value="0">--------------</option>
-                                            <option value="1">Quinta / 14:00</option>
-                                            <option value="2">Quinta / 19:00</option>
-                                            <option value="3">Sexta / 08:00</option>
-                                            <option value="4">Sexta / 10:30</option>
-                                            <option value="11">Sexta / 14:00</option>
-                                            <option value="5">Sabado / 08:00</option>
-                                            <option value="6">Sabado / 13:00</option>
-                                            <option value="7">Sabado / 15:00</option>
-                                    </select>
-                                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: bold; margin-bottom: 5px;">Telefone</label>
+                    <input type="text" name="tel1" value="<?= htmlspecialchars($aluno['tel1'] ?? '') ?>" 
+                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
 
-                                <?php
-                                echo'
-                                <div class="form-group">
-                                    <label> Data de Entrada </label>
-                                    <input type="date" class="form-control"  name="data_ent" value="'.$row['data_ent'].'"> 
-                                </div>
+                <div style="margin-top: 20px;">
+                    <button type="submit" style="background: #3ca0e7; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold;">Salvar Alterações</button>
+                    <a href="../paginas/alunolista.php" style="margin-left: 15px; color: #888;">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
-                                <div class="form-group">
-                                    <label>Data do pagamento </label>
-                                    <input type="date" class="form-control"  name="data_venc" value="'.$row['data_venc'].'">
-                                </div>
-                        
-                                <div class="form-group " >
-                                    <label>Telefone 1 </label>
-                                    <input type="text" class="form-control"  name="tel1" value="'.$row['tel1'].'" >
-                                </div>
-                                <div class="form-group " >
-                                    <label>Telefone 2 </label>
-                                    <input type="text" class="form-control"  name="tel2" value="'.$row['tel2'].'" >
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-default"><a href="../paginas/alunolista.php">Cancelar</a></button>
-                                <input type="submit" class="btn btn-info" value="Save">
-                            </div>
-                         <input type="hidden" name="id_aluno" value="'.$row['id_aluno'].'">
-                        </form>
-                    </div><!-- modal content -->
-                </div><!-- modal dialog -->
-            </div><!-- fim cadastro -->
-           ';}?>
-    
 </body>
-
 </html>

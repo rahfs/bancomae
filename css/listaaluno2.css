@@ -20,7 +20,7 @@ html {
 }
 
 nav {
-    display: relative;
+    position: relative;
 }
 
 body {
@@ -106,15 +106,14 @@ h1, .h1 {
 
 .dashboard-nav {
     min-width: 225px;
-    max-height:650px;
+    max-height: 650px;
     position: relative;
-    left: 185;
-    top: 45;
-    bottom: 45;
+    left: 185px;
+    top: 45px;
+    bottom: 45px;
     overflow: auto;
-    background-color:white;
-    border-radius:18px;
-    
+    background-color: white;
+    border-radius: 18px;
 }
 
 .dashboard-compact .dashboard-nav {
@@ -379,16 +378,16 @@ h1, .h1 {
 
 .dashboard-nav2 {
     min-width: 800px;
-    max-height:650px;
+    max-height: 650px;
     padding-left: 10px;
     position: relative;
-    left: 190;
-    top: 45;
-    bottom: 45;
+    left: 190px;
+    top: 45px;
+    bottom: 45px;
     overflow: auto;
-    background-color:white;
-    border-radius:18px;
-    border-style:groove;
+    background-color: white;
+    border-radius: 18px;
+    border-style: groove;
 }
 .dashboard-nav2 center {
     font-size: 15px;

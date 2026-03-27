@@ -1,31 +1,25 @@
 <?php
 require_once __DIR__ . '/../banco.php';
 
-session_start();
-
-function getPdo(): ?PDO
-{
-    try {
-        $dbh = Banco::conectar();
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $dbh;
-    } catch (Throwable $e) {
-        return null;
-    }
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_aluno'])) {
-    $id = (int)$_GET['id_aluno'];
-    $dbh = getPdo();
-    
-    if ($dbh) {
-        $stmt = $dbh->prepare("DELETE FROM alunos WHERE id_aluno = :id");
-        $stmt->execute([':id' => $id]);
+$id = $_GET['id_aluno'] ?? null;
+
+if ($id) {
+    try {
+        $dbh = Banco::conectar();
+        $sql = "DELETE FROM alunos WHERE id_aluno = ?";
+        $q = $dbh->prepare($sql);
+        $q->execute([$id]);
         
-        $_SESSION['toast'] = "Aluno removido do sistema!";
-        $_SESSION['toast_type'] = "error"; // To show red
+        $_SESSION['toast'] = "Aluno excluído com sucesso!";
+    } catch (PDOException $e) {
+        $_SESSION['toast'] = "Erro ao excluir: " . $e->getMessage();
     }
 }
 
 header("Location: ../paginas/alunolista.php");
-exit;
+exit();
+?>

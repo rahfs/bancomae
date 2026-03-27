@@ -5,6 +5,16 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 $baseUrl = '/bancomae';
+
+// Garantir que a conexão DB esteja disponível para os modais
+if (!isset($dbh) || $dbh === null) {
+    require_once __DIR__ . '/../banco.php';
+    try {
+        $dbh = Banco::conectar();
+    } catch (Exception $e) {
+        // Falha silenciosa
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -18,30 +28,7 @@ $baseUrl = '/bancomae';
     <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
-    <style>
-      /* TOASTS */
-      .toast-success { position: fixed; top: 20px; right: 20px; background-color: #4caf50; color: white; padding: 16px 24px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-family: inherit; font-size: 15px; z-index: 9999; animation: fadeinout 4s forwards; }
-      .toast-danger { background-color: #f44336; }
-      @keyframes fadeinout { 0% { opacity: 0; transform: translateY(-20px); } 10% { opacity: 1; transform: translateY(0); } 90% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); pointer-events: none; } }
-      
-      /* NATIVE MODALS */
-      .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); }
-      .modal-dialog { background-color: #fff; margin: 3% auto; padding: 0; border-radius: 8px; width: 90%; max-width: 500px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); position: relative; font-family: Helvetica, Arial, sans-serif; overflow: hidden;}
-      .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding: 15px 25px; background: #fafafa; }
-      .modal-title { margin: 0; font-size: 20px; font-weight: bold; color: #333; }
-      .close { background: none; border: none; font-size: 28px; cursor: pointer; color: #999; line-height: 1; padding: 0; }
-      .close:hover { color: #333; }
-      .modal-body { padding: 20px 25px; }
-      .form-group { margin-bottom: 15px; text-align: left; }
-      .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; font-size: 14px; }
-      .form-control { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 15px; font-family: inherit;}
-      .modal-footer { border-top: 1px solid #eee; padding: 15px 25px; text-align: right; background: #fafafa;}
-      .btn { padding: 10px 20px; border-radius: 6px; cursor: pointer; border: none; font-size: 15px; font-weight: bold; font-family: inherit; }
-      .btn-info { background-color: #3ca0e7; color: white; }
-      .btn-info:hover { background-color: #2a8ccc; }
-      .btn-default { background-color: #e0e0e0; color: #555; margin-right: 10px; text-decoration: none; }
-      .btn-default:hover { background-color: #ccc; }
-    </style>
+
   </head>
   <body>
 
@@ -64,32 +51,33 @@ $baseUrl = '/bancomae';
           <h1 class="header-title">Curso Marta Freitas</h1>
           <span class="header-desc">Gestão de alunos, turmas e pagamentos</span>
         </div>
-        <nav role="navigation" class="primary-navigation main-nav">
+
+        <nav id="main-nav" class="primary-navigation main-nav">
           <ul>
             <li><a href="<?= $baseUrl ?>/index.php">Início</a></li>
-            <li>
-              <a href="#">Turmas</a>
+            <li class="has-dropdown">
+              <a href="javascript:void(0);" class="menu-link">Turmas <i class="material-icons nav-icon">expand_more</i></a>
               <ul class="dropdown">
                 <li><a href="<?= $baseUrl ?>/turmas/quinta.php">Quinta</a></li>
                 <li><a href="<?= $baseUrl ?>/turmas/sexta.php">Sexta</a></li>
                 <li><a href="<?= $baseUrl ?>/turmas/sabado.php">Sábado</a></li>
-                <li><a href="<?= $baseUrl ?>/turmas/quarta.php">Quarta</a></li>
               </ul>
             </li>
-            <li>
-              <a href="#">Alunos</a>
+            <li class="has-dropdown">
+              <a href="javascript:void(0);" class="menu-link">Alunos <i class="material-icons nav-icon">expand_more</i></a>
               <ul class="dropdown">
                 <li><a href="<?= $baseUrl ?>/paginas/alunolista.php">Todos Alunos</a></li>
                 <li><a href="<?= $baseUrl ?>/paginas/alunolista2.php">Alunos sem Turma</a></li>
                 <li><a href="javascript:void(0);" onclick="document.getElementById('addaluno').style.display='block'">Adicionar Aluno</a></li>
               </ul>
             </li>
-            <li>
-              <a href="#">Pagamentos</a>
+            <li class="has-dropdown">
+              <a href="javascript:void(0);" class="menu-link">Pagamentos <i class="material-icons nav-icon">expand_more</i></a>
               <ul class="dropdown">
                 <li><a href="<?= $baseUrl ?>/paginas/pagamentolista.php">Lista de pagamentos</a></li>
                 <li><a href="javascript:void(0);" onclick="document.getElementById('addpagamento').style.display='block'">Adicionar Pagamento</a></li>
               </ul>
+            </li>
           </ul>
         </nav>
       </div>
@@ -221,11 +209,40 @@ $baseUrl = '/bancomae';
         </div>
     </div>
 
-    <!-- Script global de suporte aos modais -->
+    <!-- Scripts Globais: Modais e Menu Mobile -->
     <script>
+      // Fecha o modal ao clicar fora dele
       window.onclick = function(event) {
           if (event.target.classList.contains('modal')) {
               event.target.style.display = "none";
           }
       }
+
+      // Toggle do Menu Mobile Principal
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const navMenu = document.getElementById('main-nav');
+      
+      if (mobileBtn && navMenu) {
+          mobileBtn.addEventListener('click', function() {
+              navMenu.classList.toggle('show-mobile-menu');
+          });
+      }
+
+      // Lógica de Acordeão para Sub-menus no Mobile
+      document.querySelectorAll('.menu-link').forEach(link => {
+          link.addEventListener('click', function(e) {
+              if (window.innerWidth <= 768) {
+                  const parentLi = this.parentElement;
+                  const isAlreadyActive = parentLi.classList.contains('active-mobile');
+                  
+                  // Fecha outros submenus abertos
+                  document.querySelectorAll('.has-dropdown').forEach(li => {
+                      if (li !== parentLi) li.classList.remove('active-mobile');
+                  });
+
+                  // Alterna o atual
+                  parentLi.classList.toggle('active-mobile');
+              }
+          });
+      });
     </script>

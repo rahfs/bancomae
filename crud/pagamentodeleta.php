@@ -1,31 +1,25 @@
 <?php
 require_once __DIR__ . '/../banco.php';
 
-session_start();
-
-function getPdo(): ?PDO
-{
-    try {
-        $dbh = Banco::conectar();
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $dbh;
-    } catch (Throwable $e) {
-        return null;
-    }
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_pagamento'])) {
-    $id = (int)$_GET['id_pagamento'];
-    $dbh = getPdo();
-    
-    if ($dbh) {
-        $stmt = $dbh->prepare("DELETE FROM financeiro WHERE id_pagamento = :id");
-        $stmt->execute([':id' => $id]);
+$id = $_GET['id_pagamento'] ?? null;
+
+if ($id) {
+    try {
+        $dbh = Banco::conectar();
+        $sql = "DELETE FROM pagamento WHERE id_pagamento = ?";
+        $q = $dbh->prepare($sql);
+        $q->execute([$id]);
         
-        $_SESSION['toast'] = "Registro financeiro apagado!";
-        $_SESSION['toast_type'] = "error"; 
+        $_SESSION['toast'] = "Registro de pagamento excluído!";
+    } catch (PDOException $e) {
+        $_SESSION['toast'] = "Erro ao excluir pagamento: " . $e->getMessage();
     }
 }
 
 header("Location: ../paginas/pagamentolista.php");
-exit;
+exit();
+?>

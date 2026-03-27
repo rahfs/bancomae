@@ -1,133 +1,48 @@
 <?php
-                $dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-                    $user ='root';
-                    $password='';
+require_once __DIR__ . '/../banco.php';
 
-        try{
-        $dbh= new PDO($dsn, $user, $password);
-        }
-        catch(PDOException $e){
-        echo 'Connection failed'. $e->getMessage();
-        }
+function e(string $value): string {
+    return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
+$dbh = null;
+$alunos = [];
+
+try {
+    $dbh = Banco::conectar();
+    // Quarta costuma ser ID 11 ou 12, buscamos pelo nome do dia para garantir
+    $sql = "SELECT a.nome FROM alunos a INNER JOIN turma t ON a.turma = t.id_turma WHERE t.dia LIKE '%Quarta%' ORDER BY a.nome ASC";
+    $alunos = $dbh->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+} catch (Throwable $e) {
+    $dbh = null;
+}
 ?>
 
-<html lang="pt-BR">
-  <head>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu com JavaScript</title>
-    <link rel="stylesheet" href="../css/quarta.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Arvo&display=swap"
-      rel="stylesheet"
-    /><meta charset="UTF-8"/>
-  </head>
+<?php require_once __DIR__ . '/../components/header_lista.php'; ?>
 
-  <body>
-    <header>
-      <p>Curso Marta Freitas</p>
-    </header>
-
-    <header>
-      <nav role="navigation" class="primary-navigation">
-        <ul>
-          <li><a href="../index.php">Início</a></li>
-          <li>
-            <a href="#">Turmas</a>
-            <ul class="dropdown">
-              <li><a href="quarta.php">Quarta</a></li>
-              <li><a href="quinta.php">Quinta</a></li>
-              <li><a href="sexta.php">Sexta</a></li>
-              <li><a href="sabado.php">Sabado</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">Alunos</a>
-            <ul class="dropdown">
-              <li><a href="../paginas/alunolista.php">Todos Alunos</a></li>
-              <li><a href="../paginas/alunolista2.php">Alunos sem Turma</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">Pagamentos</a>
-
-            <ul class="dropdown">
-              <li>
-                <a href="../paginas/pagamentolista.php">Lista de pagamentos</a>
-              </li>
-              
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <!-- header e menu acima-->
 <section>
+    <div class="main-container">
+        <div class="table-container">
+            <div class="table-row title-row">
+                <div class="row-item"><p>Alunos da Quarta-Feira</p></div>
+            </div>
+            <div class="table-row heading">
+                <div class="row-item">Nome do Aluno</div>
+            </div>
+            <?php if (!$dbh): ?>
+                <div class="table-row"><div class="row-item">Erro de conexÃ£o com o banco.</div></div>
+            <?php elseif (empty($alunos)): ?>
+                <div class="table-row"><div class="row-item" style="color:#999">Nenhum aluno cadastrado para este dia.</div></div>
+            <?php else: ?>
+                <?php foreach ($alunos as $row): ?>
+                <div class="table-row">
+                    <div class="row-item"><?= e((string)$row['nome']) ?></div>
+                </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
 
-      <div class="main-container"><!-- começo turma 8h -->
-                <div class="table-container"><!-- coluna 1 -->
-                    	<div class="row-item"><p>08:00</p></div>
-
-       <?php
-					$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-					$user ='root';
-					$password='';
-					
-					try{
-					$dbh= new PDO($dsn, $user, $password);
-					}
-					catch(PDOException $e){
-					echo 'Connection failed'. $e->getMessage();
-					}
-					$sql='SELECT * FROM alunos 
-					where turma = 1';
-
-					foreach($dbh->query($sql)as $row) {
-           
-           
-           echo'  
-            <div class="table-row">
-               <div class="row-item">'.$row['nome'].'</div>
-               
-            </div>';	
-
-            }?>
-           </div><!-- table conteiner -->
-            
-                <div class="table-container"><!-- coluna 2 -->
-                    	<div class="row-item"><p>10:00</p></div>
-
-       <?php
-					$dsn ='mysql:dbname=bancocurso;host=127.0.0.1';
-					$user ='root';
-					$password='';
-					
-					try{
-					$dbh= new PDO($dsn, $user, $password);
-					}
-					catch(PDOException $e){
-					echo 'Connection failed'. $e->getMessage();
-					}
-					$sql='SELECT * FROM alunos 
-					where turma = 2';
-
-					foreach($dbh->query($sql)as $row) {
-           
-           
-           echo'  
-            <div class="table-row">
-               <div class="row-item">'.$row['nome'].'</div>
-              
-            </div>';	
-
-            }?>
-           </div><!-- table conteiner -->
-           </div>
-        
-        </section>
-
-  </body>
+</body>
 </html>

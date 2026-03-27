@@ -1,23 +1,24 @@
 @echo off
-echo ===============================
-echo Atualizando repositorio Git...
-echo ===============================
+set /p msg="Digite a mensagem do commit: "
 
-REM Caminho da pasta do seu repositorio local
-cd /d C:\xampp\htdocs\bancomae
+REM Adiciona todos os arquivos
+git add .
 
-REM Verifica se é um repositorio git
-if not exist ".git" (
-    echo Esta pasta nao e um repositorio Git!
-    pause
-    exit /b
-)
+REM Cria o commit com sua mensagem
+git commit -m "%msg%"
 
-REM Puxa as atualizacoes do GitHub
-git pull origin main
+REM Garante que o remote origin está configurado para o seu repositório
+git remote add origin https://github.com/rahfs/bancomae.git 2>nul
+git remote set-url origin https://github.com/rahfs/bancomae.git
 
-echo ===============================
-echo Atualizacao concluida!
-echo ===============================
+REM Garante que a branch principal chama-se 'main' (padrão GitHub)
+git branch -M main
 
+REM Envia os arquivos para o GitHub
+git push -u origin main
+
+echo.
+echo ===========================================
+echo Arquivos enviados com sucesso para o GitHub!
+echo ===========================================
 pause

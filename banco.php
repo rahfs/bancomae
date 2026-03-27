@@ -1,15 +1,4 @@
-
 <?php
-// Conecta-se com o MySQL
-$local= "localhost";
-$user="root";
-$pass= "";
-$db="bancocurso";
-$conectar = mysqli_connect($local,$user,$pass,$db) or die("Erro ao conectar a base de dados");
-
-// Seleciona banco de dados
-//$db=mysqli_select_db($conectar) or die("Erro na seleção da base de dados");
-
 class Banco
 {
     private static $dbNome = 'bancocurso';
@@ -21,7 +10,7 @@ class Banco
     
     public function __construct() 
     {
-        die('A função Init nao é permitido!');
+        die('A função Init não é permitida!');
     }
     
     public static function conectar()
@@ -31,6 +20,7 @@ class Banco
             try
             {
                 self::$cont =  new PDO( "mysql:host=".self::$dbHost.";"."dbname=".self::$dbNome, self::$dbUsuario, self::$dbSenha); 
+                self::$cont->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
             catch(PDOException $exception)
             {
@@ -45,5 +35,4 @@ class Banco
         self::$cont = null;
     }
 }
-
 ?>
